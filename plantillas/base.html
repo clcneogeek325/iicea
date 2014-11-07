@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head>
+<title>{% block title %} {% endblock %}</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="HTML KickStart is a ultra–lean set of HTML5, CSS, and jQuery (javascript) files, layouts, and elements designed to give you a headstart and save you a lot of hours on your next web project." />
+<meta name="copyright" content="Joshua Gatcke 99lime.com All Rights Reserved" />
+<link rel="stylesheet" type="text/css" href="/static/css/kickstart.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="/static/style.css" media="all" />                          <!-- CUSTOM STYLES -->
+</head><body>
+<!-- ===================================== END HEADER ===================================== -->
+<nav class="navbar">
+<a class="hide-phone" id="logo" href="#"><i class="icon-angle-right"></i> CERRAR <span>SESION</span></a>
+<ul>
+<li><a href="{% url 'vista_principal'  %}"><span>II</span>CEA</a></li>
+<li><a href="{% url 'vista_lista_empleados'  %}"><span>EM</span>PLEADOS</a></li>
+<li><a href="{% url 'vista_lista_alumnos'  %}"><span>AL</span>UMNOS</a></li>
+</ul>
+</nav>
+
+
+<div class="grid">
+	<br>
+	<br>
+	{% block content %}
+	
+	{% endblock %}
+
+</div><!--END GRID WRAP-->
+
+<!-- Begin MailChimp Signup Form -->
+<div class="grid center" id="mc_embed_signup">
+<form action="http://99lime.us4.list-manage2.com/subscribe/post?u=f4a8f36be8ffba6bf0580ef5f&amp;id=67a4916516" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+
+<div class="mc-field-group">
+<h4>99Lime Announcements and Releases.</h4>
+
+<input type="email" style="width:40%;" value="" placeholder="name@domain.com" name="EMAIL" class="required email" id="mce-EMAIL">
+<button class="button small orange" type="submit" value="Get Notified" name="subscribe" id="mc-embedded-subscribe">Get Notified</button>
+</div>
+<label for="mce-EMAIL"><span>No spam. We hate spam too.</span></label>
+<div id="mce-responses" class="clear">
+<div class="response" id="mce-error-response" style="display:none"></div>
+<div class="response" id="mce-success-response" style="display:none"></div>
+</div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->
+
+<!-- ===================================== START FOOTER ===================================== -->
+<div class="clear"></div>
+<div id="footer">
+&copy; Copyright 2014 All Rights Reserved. This website was built with 
+<a href="http://www.99lime.com">HTML KickStart</a> • 
+<a href="http://99lime.com/rss/">RSS</a> • 
+<a href="http://www.99lime.com/_bak2/">Joshua Gatcke</a>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/static/js/kickstart.js"></script>                                 
+<script type="text/javascript" src="/static/js/pup.js"></script>                                 
+<!-- KICKSTART -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1641401-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body></html>
