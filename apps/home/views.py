@@ -28,13 +28,13 @@ def view_login(request):
 			else:
 				msg = "El usuario esta inhabilitado usted necesita ponerse en contacto con el administrador(a)"
 				ctx = {'msg':msg}
-				return render_to_response('msg.html',ctx,
+				return render_to_response('error.html',ctx,
 					context_instance=RequestContext(request))
 		else:
 			# Sus usuario y contrasenia son incorrectos
 			msg = "LA contrasenia y el usuario son incorrectos"
 			ctx = {'msg':msg}
-			return render_to_response('msg.html',ctx,
+			return render_to_response('error.html',ctx,
 				context_instance=RequestContext(request))
 	else:
 		form = AuthenticationForm()
