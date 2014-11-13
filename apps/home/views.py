@@ -5,6 +5,32 @@ from django.http  import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import alumnoLoginForm
+
+
+
+
+def view_login_alumnos(request):
+    if request.method == "POST":
+        form = alumnoLoginForm(request.POST)
+        if form.is_valid():
+            n_control = form.cleaned_data['no_control']
+            passwd = form.cleaned_data['contrasenia']
+            return HttpResponseRedirect('/')
+        else:
+            msg = "Tus datos no son correctos"
+            ctx = {'msg':msg}
+            return render_to_response('msg.html',ctx,
+                            context_instance=RequestContext(request))
+
+    else:
+        form  = alumnoLoginForm()
+        ctx = {'form':form}
+        return render_to_response('home/alumnos/login.html',ctx,
+                            context_instance=RequestContext(request))
+
+
+
 
 
 @login_required(login_url='/login/')

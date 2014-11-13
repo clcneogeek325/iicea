@@ -92,4 +92,3 @@ def view_add_user(request):
 		return render_to_response('alumno/user.html',ctx,
 				context_instance=RequestContext(request))
 
-
