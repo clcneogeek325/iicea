@@ -45,10 +45,22 @@
 	{{form.dia}}<br>
 	{{form.telefono.label}}
 	{{form.telefono}}<br>	
+	{{form.grupo.label}}
+	{{form.grupo}}<br>	
+	{{form.tutor.label}}
+	{{form.tutor}}<br>	
+	{{form.horario.label}}
+	{{form.horario}}<br>	
+	{{form.materias.label}}
+	{{form.materias}}<br>	
+
+	{{form.activo.label}}
+	{{form.activo}}<br>	
 
 	
 
-	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>
+<!--	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>-->
+<button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
 </form>
 
 

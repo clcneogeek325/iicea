@@ -9,6 +9,7 @@ class empleado(models.Model):
 	telefono = models.CharField(max_length=30,null=True)
 	sexo = models.CharField(max_length=30,null=True)
 	perfil = models.ForeignKey(perfil,null=True)
+	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.empleado.first_name
 

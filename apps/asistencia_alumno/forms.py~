@@ -1,10 +1,11 @@
 from django import forms
 from .models import asistencia_alumno
 from apps.alumno.models import alumno
+from apps.empleado.models import empleado
 
 class asistencia_alumnoForm(forms.ModelForm):
-	empleado = forms.ModelMultipleChoiceFiel(queryset=alumno.objects.filter(activo=True),label="Docente")
-	alumnos = forms.ModelMultipleChoiceFiel(queryset=alumno.objects.filter(activo=True),label="Alumnos")
+	empleado = forms.ModelMultipleChoiceField(queryset=empleado.objects.filter(activo=True),label="Docente")
+	alumnos = forms.ModelMultipleChoiceField(queryset=alumno.objects.filter(activo=True),label="Alumnos")
 	class Meta:
 		model = asistencia_alumno
 		fields = '__all__'

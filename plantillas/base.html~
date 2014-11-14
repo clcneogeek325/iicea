@@ -10,15 +10,22 @@
 <link rel="stylesheet" type="text/css" href="/static/style.css" media="all" />                          <!-- CUSTOM STYLES -->
 </head><body>
 <!-- ===================================== END HEADER ===================================== -->
+
+	
 <nav class="navbar">
 <a class="hide-phone" id="logo" href="{% url  'vista_logout' %}"><i class="icon-angle-right"></i> CERRAR <span>SESION</span></a>
+{% if  user.is_staff %}
 <ul>
 <li><a href="{% url 'vista_principal'  %}"><span>II</span>CEA</a></li>
 <li><a href="{% url 'vista_lista_empleados'  %}"><span>EM</span>PLEADOS</a></li>
 <li><a href="{% url 'vista_lista_alumnos'  %}"><span>AL</span>UMNOS</a></li>
-<li><a href="{% url 'vista_lista_calificacions'  %}"><span>AL</span>UMNOS</a></li>
+<li><a href="{% url 'vista_lista_calificacions'  %}"><span>CA</span>LIFICACIONES</a></li>
+<li><a href="#"><span>RE</span>PORTES</a></li>
 </ul>
+{% endif %}
 </nav>
+
+
 
 
 <div class="grid">

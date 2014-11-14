@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de calificacions{% endblock %}
+{% block title %}Lista de Pagos{% endblock %}
 
 {% block content %}
 
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
-<h3>Lista de calificacions</h3>
-<a href="{% url  'vista_logout' %}">
-<button class="medium green"><i class="icon-play-circle"></i>Cerrar Cesion</button>
+<a href="{% url 'vista_agregar_pago'  %}">
+<button class="medium green"><i class="icon-play-circle"></i>Nuevo Pago</button>
 </a>
+<h3>Pagos</h3>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
 </ul>
 
 	<div id="instructions" class="tab-content">
 	<div class="col_8">
-		<h4><i class="icon-wrench"></i> Lista de calificacions</h4>
+	<h4><i class="icon-wrench"></i> Setup</h4>
 		{% if lista %}
 		<!-- Table -->
 		<table cellspacing="0" cellpadding="0">
@@ -26,11 +26,10 @@
 			</tr>
 		</thead>
 		<tbody>
-				{% for n in lista %}
+				{% for p in lista %}
 				<tr>
-				<td>{{n.materia.nombre}}</td>
-				<td>{{n.calificacion}}</td>
-			
+				<td>{{p.alumno.alumno.first_name}}</td>
+				<td><a href="{% url  'vista_editar_pago' p.id %}">Editar</a></td>
 				</tr>
 				<tr>
 				</tr>
@@ -38,7 +37,7 @@
 		</tbody>
 		</table>
 		 {% else %}
-		 <h1>No se han encontrado calificacions Registrados</h1>
+		 <h1>No se han encontrado pagos</h1>
 		{% endif %}
 	
 	</div>
