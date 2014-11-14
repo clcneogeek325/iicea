@@ -7,6 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('empleado', '0001_initial'),
         ('alumno', '0001_initial'),
     ]
 
@@ -18,7 +19,9 @@ class Migration(migrations.Migration):
                 ('hora_entrada', models.TimeField()),
                 ('hora_salida', models.TimeField()),
                 ('fecha', models.DateField()),
-                ('alumno', models.ForeignKey(to='alumno.alumno')),
+                ('activo', models.BooleanField(default=True)),
+                ('alumnos', models.ManyToManyField(to='alumno.alumno')),
+                ('empleado', models.ForeignKey(to='empleado.empleado')),
             ],
             options={
             },

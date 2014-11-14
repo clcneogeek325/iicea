@@ -5,5 +5,6 @@ from apps.alumno.models import alumno
 class observacion(models.Model):
 	observacion = models.CharField(max_length=50,null=False)
 	alumno = models.ForeignKey(alumno,null=False)
+	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.alumno.alumno.username

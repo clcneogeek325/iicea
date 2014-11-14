@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def view_lista_perfiles(request):
-	lista = perfil.objects.all()
+	lista = perfil.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("perfil/lista.html",ctx,
 			context_instance=RequestContext(request))

@@ -7,6 +7,7 @@ class pago(models.Model):
 	concepto_pago = models.ForeignKey(concepto_pago,null=False,blank=False)
 	fecha = models.DateTimeField(blank=False, null=False,auto_now_add=True)
 	cantidad = models.FloatField()
+	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.alumno.alumno.first_name
 

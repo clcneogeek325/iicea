@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
 def view_lista_asistencia_alumnos(request):
-	lista = asistencia_alumno.objects.all()
+	lista = asistencia_alumno.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("asistencia_alumno/lista.html",ctx,
 			context_instance=RequestContext(request))

@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('empleado', '__first__'),
+        ('empleado', '0001_initial'),
     ]
 
     operations = [
@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
                 ('hora_entrada', models.TimeField()),
                 ('hora_salida', models.TimeField()),
                 ('fecha', models.DateField()),
-                ('empleado', models.ForeignKey(to='empleado.empleado')),
+                ('activo', models.BooleanField(default=True)),
+                ('empleados', models.ManyToManyField(to='empleado.empleado')),
             ],
             options={
             },

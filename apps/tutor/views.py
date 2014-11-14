@@ -26,7 +26,7 @@ def view_add_tutor(request):
 
 
 def view_lista_tutores(request):
-	lista = tutor.objects.all()
+	lista = tutor.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("tutor/lista.html",ctx,
 			context_instance=RequestContext(request))

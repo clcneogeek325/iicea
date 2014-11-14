@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 def view_lista_empleados(request):
 	form = empleadoForm()
-	lista = empleado.objects.all()
+	lista = empleado.objects.filter(activo=True)
 	ctx = {'lista':lista,'form':form}
 	return render_to_response("empleado/lista.html",ctx,
 			context_instance=RequestContext(request))
@@ -58,6 +58,7 @@ def view_agregar_empleado(request,id):
 				emp.save()
 				U.first_name=request.POST['nombre']
 				U.last_name=request.POST['apellidos']
+				U.is_staff = True
 				U.save()
 				return HttpResponseRedirect("/empleado/")
 			else:

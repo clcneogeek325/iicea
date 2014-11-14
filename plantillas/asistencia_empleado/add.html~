@@ -7,7 +7,6 @@
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
-<a href="{% url 'vista_agregar_asistencia_empleado'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Agregar Grupo</button>
 </a>
 <h3>Asistencia empleados</h3>

@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def view_lista_materias(request):
-	lista = materia.objects.all()
+	lista = materia.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("materia/lista.html",ctx,
 			context_instance=RequestContext(request))

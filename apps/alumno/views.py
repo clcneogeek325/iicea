@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 def view_lista_alumnos(request):
-	lista = alumno.objects.all()
+	lista = alumno.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("alumno/lista.html",ctx,
 			context_instance=RequestContext(request))

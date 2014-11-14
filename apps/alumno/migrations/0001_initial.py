@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
                 ('email', models.CharField(max_length=30, null=True)),
                 ('dia', models.CharField(max_length=20, null=True)),
                 ('telefono', models.CharField(max_length=20, null=True)),
+                ('activo', models.BooleanField(default=True)),
                 ('alumno', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
                 ('grupo', models.ForeignKey(to='grupo.grupo', null=True)),
                 ('horario', models.ForeignKey(to='horario.horario', null=True)),

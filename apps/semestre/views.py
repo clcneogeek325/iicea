@@ -27,7 +27,7 @@ def view_add_semestre(request):
 
 
 def view_lista_semestres(request):
-	lista = semestre.objects.all()
+	lista = semestre.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("semestre/lista.html",ctx,
 			context_instance=RequestContext(request))

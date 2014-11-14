@@ -8,7 +8,10 @@
 	INSTRUCTIONS 
 ===================================== -->
 <h3>Alumnos</h3>
-<a href="{% url  'vista_agregar_usuario_alumno'  %}" target="popup" onClick="abrirVentana();">
+<!--<a href="{% url  'vista_agregar_usuario_alumno'  %}" target="popup" onClick="abrirVentana();">-->
+<!--<button class="medium green"><i class="icon-play-circle"></i>Nuevo Alumno</button>-->
+<!--</a>-->
+<a href="{% url  'vista_agregar_usuario_alumno'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Nuevo Alumno</button>
 </a>
 <a href="{% url  'vista_lista_alumnos'  %}">

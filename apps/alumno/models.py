@@ -20,5 +20,6 @@ class alumno(models.Model):
 	tutor = models.ForeignKey(tutor,null=True)
 	horario = models.ForeignKey(horario,null=True)
 	materias = models.ManyToManyField(materia,null=True)
+	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.alumno.first_name

@@ -1,0 +1,57 @@
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from .models import nomina
+from .forms import nominaForm
+from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
+
+
+def view_lista_nominas(request):
+	lista = nomina.objects.all()
+	ctx = {'lista':lista}
+	return render_to_response("nomina/lista.html",ctx,
+			context_instance=RequestContext(request))
+
+def view_add_nomina(request):
+	if request.method == "POST":
+		form  = nominaForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/nomina/")
+		else:
+			form  = nominaForm(request.POST)
+			ctx = {'form':form}
+			return render_to_response('nomina/add.html',ctx,
+					context_instance=RequestContext(request))	
+	else:
+		form = nominaForm()
+		ctx = {'form':form}
+		return render_to_response('nomina/add.html',ctx,
+				context_instance=RequestContext(request))
+
+
+
+
+def view_editar_nomina(request,id):
+	try:
+		n = nomina.objects.get(pk=id)
+		if request.method == "POST":
+			form  = nominaForm(request.POST,instance=n)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect("/nomina/")
+			else:
+				form  = nominaForm(request.POST)
+				ctx = {'form':form}
+				return render_to_response('nomina/edit.html',ctx,
+						context_instance=RequestContext(request))	
+		else:
+			form = nominaForm(instance=n)
+			ctx = {'form':form}
+			return render_to_response('nomina/edit.html',ctx,
+					context_instance=RequestContext(request))
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el perfil solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+

@@ -27,7 +27,7 @@ def view_add_grupo(request):
 
 
 def view_lista_grupos(request):
-	lista = grupo.objects.all()
+	lista = grupo.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("grupo/lista.html",ctx,
 			context_instance=RequestContext(request))

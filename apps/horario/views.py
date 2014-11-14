@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def view_lista_horarios(request):
-	lista = horario.objects.all()
+	lista = horario.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("horario/lista.html",ctx,
 			context_instance=RequestContext(request))

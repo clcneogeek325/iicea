@@ -6,6 +6,23 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from apps.semestre.models import semestre
+
+def view_calificaciones_alumno(request):
+	lista = semestre.objects.all()
+	ctx = {'lista':lista}
+	return render_to_response("calificacion/semestres.html",ctx,
+			context_instance=RequestContext(request))
+
+def view_calificaciones_alumno_x_semestre(request,id_semestre,id_alumno):
+	s = semestre.objects.get(pk=id_semestre)	
+	a = alumno.objects.get(pk=id_alumno)
+	lista = calificacion.objects.filter(alumno=a,semestre=s)
+	ctx = {'lista':lista}
+	return render_to_response("calificacion/calificaciones.html",ctx,
+			context_instance=RequestContext(request))
+
+
 
 def view_lista_calificacions(request):
 	lista = calificacion.objects.all()
@@ -29,8 +46,7 @@ def view_editar_calificacion(request,id):
 				return render_to_response('calificacion/edit.html',ctx,
 						context_instance=RequestContext(request))	
 		else:
-			ctx_user = {'nombre':U.first_name,'apellidos':U.last_name}
-			form = calificacionForm(instance=a,initial=ctx_user)
+			form = calificacionForm(instance=a)
 			ctx = {'form':form}
 			return render_to_response('calificacion/edit.html',ctx,
 					context_instance=RequestContext(request))
@@ -56,4 +72,6 @@ def view_agregar_calificacion(request):
 		ctx = {'form':form}
 		return render_to_response('calificacion/add.html',ctx,
 				context_instance=RequestContext(request))
+				
+				
 
