@@ -9,7 +9,7 @@
 ===================================== -->
 <h3>Lista de calificacions</h3>
 <a href="{% url  'vista_logout' %}">
-<button class="medium green"><i class="icon-play-circle"></i>Cerrar Cesion</button>
+<button class="medium red"><i class="icon-play-circle"></i>Cerrar Cesion</button>
 </a>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>

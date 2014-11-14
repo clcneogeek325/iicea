@@ -5,7 +5,7 @@ from apps.grupo.models import grupo
 from apps.tutor.models import tutor
 from apps.horario.models import horario
 from apps.materia.models import materia
-
+from apps.semestre.models import semestre
 class alumno(models.Model):
 	alumno = models.OneToOneField(User,null=False)
 	sexo = models.CharField(max_length=20,null=True)
@@ -20,6 +20,7 @@ class alumno(models.Model):
 	tutor = models.ForeignKey(tutor,null=True)
 	horario = models.ForeignKey(horario,null=True)
 	materias = models.ManyToManyField(materia,null=True)
+	semestre = models.ManyToManyField(semestre,null=True)
 	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.alumno.first_name

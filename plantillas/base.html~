@@ -11,10 +11,11 @@
 </head><body>
 <!-- ===================================== END HEADER ===================================== -->
 
+{% if  user.is_staff %}
 	
 <nav class="navbar">
 <a class="hide-phone" id="logo" href="{% url  'vista_logout' %}"><i class="icon-angle-right"></i> CERRAR <span>SESION</span></a>
-{% if  user.is_staff %}
+
 <ul>
 <li><a href="{% url 'vista_principal'  %}"><span>II</span>CEA</a></li>
 <li><a href="{% url 'vista_lista_empleados'  %}"><span>EM</span>PLEADOS</a></li>
@@ -22,9 +23,8 @@
 <li><a href="{% url 'vista_lista_calificacions'  %}"><span>CA</span>LIFICACIONES</a></li>
 <li><a href="#"><span>RE</span>PORTES</a></li>
 </ul>
-{% endif %}
 </nav>
-
+{% endif %}
 
 
 

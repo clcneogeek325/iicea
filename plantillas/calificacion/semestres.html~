@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de calificacions{% endblock %}
+{% block title %}Lista de Semestres{% endblock %}
 
 {% block content %}
 
@@ -11,8 +11,8 @@
 <!--<a href="#" target="popup" onClick="abrirVentana();">-->
 <!--<button class="medium green"><i class="icon-play-circle"></i>Nuevo calificacion</button>-->
 <!--</a>-->
-<a href="{% url  'vista_agregar_calificacion'  %}">
-<button class="medium green"><i class="icon-play-circle"></i>Nuevo calificacion</button>
+<a href="{% url  'vista_logout'  %}">
+<button class="medium red"><i class="icon-play-circle"></i>Cerrar Cesion</button>
 </a>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
@@ -32,7 +32,7 @@
 				{% for n in lista %}
 				<tr>
 				<td>{{n.nombre}}</td>
-			    <td><a href="{% url  'vista_cal_alumno_x_sem' n.id  user.id %}">Mostrar</a></td>
+			    <td><a href="{% url  'vista_cal_alumno_x_sem'  n.id user.id   %}">Mostrar</a></td>
 				</tr>
 				<tr>
 				</tr>

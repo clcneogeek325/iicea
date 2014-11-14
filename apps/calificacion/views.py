@@ -9,16 +9,18 @@ from django.contrib.auth.forms import UserCreationForm
 from apps.semestre.models import semestre
 from apps.alumno.models import alumno
 
+
 def view_calificaciones_alumno(request):
 	lista = semestre.objects.filter(activo=True)
 	ctx = {'lista':lista}
 	return render_to_response("calificacion/semestres.html",ctx,
 			context_instance=RequestContext(request))
 
-def view_calificaciones_alumno_x_semestre(request,id_semestre,id_alumno):
+def view_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
+	
 	s = semestre.objects.get(pk=id_semestre)	
-	a = alumno.objects.get(pk=id_alumno)
-	lista = calificacion.objects.filter(alumno=a)
+	a = alumno.objects.get(alumno_id=id_user)
+	lista = calificacion.objects.filter(alumno=a,semestre=s)
 	ctx = {'lista':lista}
 	return render_to_response("calificacion/calificaciones.html",ctx,
 			context_instance=RequestContext(request))

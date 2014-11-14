@@ -26,7 +26,10 @@ def view_login(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect('/')
+				if user.is_staff or user.is_superuser:
+					return HttpResponseRedirect('/')
+				else:
+					return HttpResponseRedirect('/lista_semestres/')
 			else:
 				msg = "El usuario esta inhabilitado usted necesita ponerse en contacto con el administrador(a)"
 				ctx = {'msg':msg}
