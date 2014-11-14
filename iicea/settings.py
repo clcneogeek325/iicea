@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'apps.tutor',
     'apps.home',
     'apps.observacion',
+    'apps.calificacion',
 )
 
 MIDDLEWARE_CLASSES = (

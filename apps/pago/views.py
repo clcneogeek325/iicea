@@ -35,4 +35,19 @@ def view_editar_pago(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
-
+def view_add_pago(request):
+	if request.method == "POST":
+		form  = pagoForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/pago/")
+		else:
+			form  = pagoForm(request.POST)
+			ctx = {'form':form}
+			return render_to_response('pago/add.html',ctx,
+					context_instance=RequestContext(request))	
+	else:
+		form = pagoForm()
+		ctx = {'form':form}
+		return render_to_response('pago/add.html',ctx,
+				context_instance=RequestContext(request))

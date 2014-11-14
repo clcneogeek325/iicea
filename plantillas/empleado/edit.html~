@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Editando{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== 
+	INSTRUCTIONS 
+===================================== -->
+<h3>Perfiles</h3>
+<ul class="tabs">
+<li><a href="#instructions">Lista</a></li>
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Setup</h4>
+
+	<form action="" method="post">
+		{% csrf_token %}
+		{{form_empleado.nombre.label}}
+		{{form_empleado.nombre}}<br>
+		{{form_empleado.apellidos.label}}
+		{{form_empleado.apellidos}}<br>
+		{{form_empleado.localidad.label}}
+		{{form_empleado.localidad}}<br>
+		{{form_empleado.municipio.label}}
+		{{form_empleado.municipio}}<br>
+		{{form_empleado.telefono.label}}
+		{{form_empleado.telefono}}<br>
+		{{form_empleado.sexo.label}}
+		{{form_empleado.sexo}}<br>
+		{{form_empleado.perfil.label}}
+		{{form_empleado.perfil}}<br>
+
+	<button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
+</form>
+
+
+	</div>
+	<div class="col_1"></div>
+	<div class="col_3">
+	<h4><i class="icon-globe"></i> Browsers</h4>
+	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
+	<h4>Notes</h4>
+	Don't forget to use an HTML5 Doctype
+	<code>&lt;!DOCTYPE html&gt;</code>
+	</div>
+	</div>
+{% endblock %}

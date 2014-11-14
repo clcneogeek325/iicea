@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Empleados{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== 
+	INSTRUCTIONS 
+===================================== -->
+<h3>Empleados</h3>
+{% comment %}
+
+<a href="{% url  'vista_agregar_usuario'  %}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=500'); return false;">
+{% endcomment %}
+<a href="{% url  'vista_agregar_usuario'  %}" target="popup" onClick="abrirVentana();">
+<button class="medium green"><i class="icon-play-circle"></i>Nuevo Empleado</button>
+</a>
+<a href="{% url  'vista_lista_empleados'  %}">
+<button class="medium green"><i class="icon-play-circle"></i>Actualizar</button>
+</a>
+<ul class="tabs">
+<li><a href="#instructions">Lista</a></li>
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Lista de empleados</h4>
+		{% if lista %}
+		<!-- Table -->
+		<table cellspacing="0" cellpadding="0">
+		<thead><tr>
+				<th>Nombre</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for e in lista %}
+				<tr>
+				<td>{{e.empleado.first_name}}</td>
+				<td><a href="{% url  'vista_editar_empleado' e.id %}">Editar</a></td>
+				</tr>
+				<tr>
+				</tr>
+				{% endfor %}
+		</tbody>
+		</table>
+		 {% else %}
+		 <h1>No se han encontrado empleados</h1>
+		{% endif %}
+	
+	</div>
+
+	<div class="col_1"></div>
+	<div class="col_3">
+	<h4><i class="icon-globe"></i> Browsers</h4>
+	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
+	<h4>Notes</h4>
+	Don't forget to use an HTML5 Doctype
+	<code>&lt;!DOCTYPE html&gt;</code>
+	</div>
+	</div>
+{% endblock %}

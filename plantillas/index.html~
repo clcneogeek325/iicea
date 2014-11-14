@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<!-- ===================================== 
+	INSTRUCTIONS 
+===================================== -->
+<h3>Datos Generales</h3>
+<ul class="tabs">
+<li><a href="#instructions">Lista</a></li>
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Ajustes</h4>
+		<!-- List Icons -->
+		<ul class="icons">
+			<li><i class="icon-ok"></i><a href="{% url  'vista_lista_perfiles'  %}">Pefil</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_semestres'  %}">Semestre</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_grupos' %}">Grupo</a></li>
+		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_tutores'  %}">Tutor</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_horarios'  %}">Horario</a></li>
+		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_concepto_pagos'%}">Concepto Pago</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_nominas' %}">Nomina</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_observaciones' %}">Observacion</a></li>
+		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_pagos'  %}">Pago</a></li>
+		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_asistencia_alumnos' %}">Asistencia Alumno</a></li>
+		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_asistencia_empleados'  %}">Asistencia Empleado</a></li>
+
+		</ul>
+	</div>
+	<div class="col_1"></div>
+	<div class="col_3">
+	<h4><i class="icon-globe"></i> Browsers</h4>
+	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
+	<h4>Notes</h4>
+	Don't forget to use an HTML5 Doctype
+	<code>&lt;!DOCTYPE html&gt;</code>
+	</div>
+	</div>
+{% endblock %}

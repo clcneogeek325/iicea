@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de Pagos{% endblock %}
+{% block title %}Lista de Asistencia empleados{% endblock %}
 
 {% block content %}
 
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
-<h3>Perfiles</h3>
+<br />
+<br />
+<a href="{% url 'vista_agregar_asistencia_empleado'  %}">
+<button class="medium green"><i class="icon-play-circle"></i>Agregar Asistencia</button>
+</a>
+<h3>Aisstencia de empleados</h3>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
 </ul>
@@ -25,8 +30,8 @@
 		<tbody>
 				{% for p in lista %}
 				<tr>
-				<td>{{p.alumno.alumno.first_name}}</td>
-				<td><a href="{% url  'vista_editar_pago' p.id %}">Editar</a></td>
+				<td>{{p.fecha}}</td>
+				<td><a href="{% url  'vista_editar_asistencia_empleado' p.id %}">Editar</a></td>
 				</tr>
 				<tr>
 				</tr>

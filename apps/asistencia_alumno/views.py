@@ -26,7 +26,7 @@ def view_editar_asistencia_alumno(request,id):
 				return render_to_response('asistencia_alumno/edit.html',ctx,
 						context_instance=RequestContext(request))	
 		else:
-			form = asistencia_alumnoForm(instance=g)
+			form = asistencia_alumnoForm(instance=ast)
 			ctx = {'form':form}
 			return render_to_response('asistencia_alumno/edit.html',ctx,
 					context_instance=RequestContext(request))
@@ -34,4 +34,21 @@ def view_editar_asistencia_alumno(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
+
+def view_add_asistencia_alumno(request):
+	if request.method == "POST":
+		form  = asistencia_alumnoForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/asistencia_alumno/")
+		else:
+			form  = asistencia_alumnoForm(request.POST)
+			ctx = {'form':form}
+			return render_to_response('asistencia_alumno/add.html',ctx,
+					context_instance=RequestContext(request))	
+	else:
+		form = asistencia_alumnoForm()
+		ctx = {'form':form}
+		return render_to_response('asistencia_alumno/add.html',ctx,
+				context_instance=RequestContext(request))
 

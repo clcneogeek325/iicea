@@ -8,7 +8,11 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('grupo', '__first__'),
+        ('materia', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('horario', '__first__'),
+        ('tutor', '__first__'),
     ]
 
     operations = [
@@ -25,6 +29,10 @@ class Migration(migrations.Migration):
                 ('dia', models.CharField(max_length=20, null=True)),
                 ('telefono', models.CharField(max_length=20, null=True)),
                 ('alumno', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('grupo', models.ForeignKey(to='grupo.grupo', null=True)),
+                ('horario', models.ForeignKey(to='horario.horario', null=True)),
+                ('materias', models.ManyToManyField(to='materia.materia', null=True)),
+                ('tutor', models.ForeignKey(to='tutor.tutor', null=True)),
             ],
             options={
             },

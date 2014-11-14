@@ -20,5 +20,7 @@ urlpatterns = patterns('',
     url(r'^', include('apps.grupo.urls')),
     url(r'^', include('apps.semestre.urls')),
     url(r'^', include('apps.perfil.urls')),
+    url(r'^', include('apps.materia.urls')),
+   	url(r'^', include('apps.calificacion.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

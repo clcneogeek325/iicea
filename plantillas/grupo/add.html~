@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- META -->
+	<title>HTML KickStart Elements</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="/static/css/kickstart.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="/static/style.css" media="all" />                          <!-- CUSTOM STYLES -->
+<script type="text/javascript" src="/static/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/static/js/kickstart.js"></script>  	
+	
+
+</head>
+<body>
+<div class="grid">
+	<h3>Perfiles</h3>
+<ul class="tabs">
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Setup</h4>
+
+	<form action="" method="post">
+		{% csrf_token %}
+		{{form.as_p}}
+
+<!--	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>-->
+<!--	-->
+		<button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
+	
+</form>
+
+
+	</div>
+	<div class="col_1"></div>
+	<div class="col_3">
+
+	<h4><i class="icon-globe"></i> Browsers</h4>
+	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
+	<h4>Notes</h4>
+	Don't forget to use an HTML5 Doctype
+	<code>&lt;!DOCTYPE html&gt;</code>
+	</div>
+	</div>
+
+	</div>
+</div> <!-- End Grid -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from .models import pago
+from .forms import pagoForm
+from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
+
+
+def view_lista_pagos(request):
+	lista = pago.objects.all()
+	ctx = {'lista':lista}
+	return render_to_response("pago/lista.html",ctx,
+			context_instance=RequestContext(request))
+
+
+def view_editar_pago(request,id):
+	try:
+		p = pago.objects.get(pk=id)
+		if request.method == "POST":
+			form  = pagoForm(request.POST,instance=p)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect("/pago/")
+			else:
+				form  = pagoForm(request.POST)
+				ctx = {'form':form}
+				return render_to_response('pago/edit.html',ctx,
+						context_instance=RequestContext(request))	
+		else:
+			form = pagoForm(instance=p)
+			ctx = {'form':form}
+			return render_to_response('pago/edit.html',ctx,
+					context_instance=RequestContext(request))
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el perfil solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+

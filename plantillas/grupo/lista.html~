@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Grupos{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== 
+	INSTRUCTIONS 
+===================================== -->
+<h3>Grupos</h3>
+<!--<a href="{% url 'vista_agregar_grupo'  %}" target="popup" onClick="abrirVentana();">-->
+<a href="{% url 'vista_agregar_grupo'  %}">
+
+
+<button class="medium green"><i class="icon-play-circle"></i>Agregar Grupo</button>
+</a>
+<ul class="tabs">
+<li><a href="#instructions">Lista</a></li>
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Setup</h4>
+		{% if lista %}
+		<!-- Table -->
+		<table cellspacing="0" cellpadding="0">
+		<thead><tr>
+				<th>Nombre</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for g in lista %}
+				<tr>
+				<td>{{g.nombre}}</td>
+				<td><a href="{% url  'vista_editar_grupo' g.id %}">Editar</a></td>
+				</tr>
+				<tr>
+				</tr>
+				{% endfor %}
+		</tbody>
+		</table>
+		 {% else %}
+		 <h1>No se han encontrado grupos registrados</h1>
+		{% endif %}
+	
+	</div>
+	<div class="col_1"></div>
+	<div class="col_3">
+	<h4><i class="icon-globe"></i> Browsers</h4>
+	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
+	<h4>Notes</h4>
+	Don't forget to use an HTML5 Doctype
+	<code>&lt;!DOCTYPE html&gt;</code>
+	</div>
+	</div>
+{% endblock %}
