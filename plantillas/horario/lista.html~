@@ -8,7 +8,8 @@
 	INSTRUCTIONS 
 ===================================== -->
 <h3>Horarios</h3>
-<a href="{% url 'vista_agregar_horario'  %}" target="popup" onClick="abrirVentana();">
+<!--<a href="{% url 'vista_agregar_horario'  %}" target="popup" onClick="abrirVentana();">-->
+<a href="{% url 'vista_agregar_horario'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Agregar Horario</button>
 </a>
 <ul class="tabs">

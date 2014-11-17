@@ -16,7 +16,9 @@ def view_add_horario(request):
 	if request.method == "POST":
 		form  = horarioForm(request.POST)
 		if form.is_valid():
-			form.save()
+			h = form.save(commit=False)
+			h.activo = True
+			h.save()
 			return HttpResponseRedirect("/horario/")
 		else:
 			form  = horarioForm(request.POST)
@@ -52,3 +54,9 @@ def view_editar_horario(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+def view_del_horario(request,id):
+	h = horario.objects.get(pk=id)
+	h.activo = False
+	h.save()
+	return HttpResponseRedirect('/horario/')
+	
