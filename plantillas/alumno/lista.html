@@ -33,6 +33,7 @@
 				<tr>
 				<td>{{a.alumno.first_name}}</td>
 				<td><a href="{% url  'vista_editar_alumno' a.id %}">Editar</a></td>
+				<td><a  data-confirm="Are you sure?" data-method="delete" href="{% url  'vista_eliminar_alumno' a.id %}" rel="nofollow">Dar de baja</a></td>
 				</tr>
 				<tr>
 				</tr>

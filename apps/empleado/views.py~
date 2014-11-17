@@ -25,7 +25,6 @@ def view_editar_empleado(request,id):
 			if form_empleado.is_valid():
 				emp = form_empleado.save(commit=False)
 				emp.empleado = U
-				emp.save_m2m()
 				emp.save()
 				U.first_name = str(request.POST['nombre'])
 				U.last_name = str(request.POST['apellidos'])

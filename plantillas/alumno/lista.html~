@@ -14,9 +14,6 @@
 <a href="{% url  'vista_agregar_usuario_alumno'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Nuevo Alumno</button>
 </a>
-<a href="{% url  'vista_lista_alumnos'  %}">
-<button class="medium green"><i class="icon-play-circle"></i>Actualizar</button>
-</a>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
 </ul>
@@ -36,6 +33,7 @@
 				<tr>
 				<td>{{a.alumno.first_name}}</td>
 				<td><a href="{% url  'vista_editar_alumno' a.id %}">Editar</a></td>
+				<td><a  data-confirm="Are you sure?" data-method="delete" href="{% url  'vista_eliminar_alumno' a.id %}">Dar de baja</a></td>
 				</tr>
 				<tr>
 				</tr>

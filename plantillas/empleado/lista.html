@@ -34,7 +34,9 @@
 				{% for e in lista %}
 				<tr>
 				<td>{{e.empleado.first_name}}</td>
-				<td><a href="{% url  'vista_editar_empleado' e.id %}">Editar</a></td>
+				<td>
+				<a href="{% url  'vista_editar_empleado' e.id %}"><button class="medium blue"> <i class="icon-edit">Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{e.empleado.first_name}}!')){window.location.href = '{% url  'vista_eliminar_empleado' e.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

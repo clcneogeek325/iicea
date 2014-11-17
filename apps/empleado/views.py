@@ -8,6 +8,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.alumno.forms import nombreYpellidoForm
 
+def view_del_empleado(request,id):
+	e = empleado.objects.get(pk=id)
+	e.activo = False
+	e.save()
+	return HttpResponseRedirect('/empleado/')
+
+
 def view_lista_empleados(request):
 	form = empleadoForm()
 	lista = empleado.objects.filter(activo=True)

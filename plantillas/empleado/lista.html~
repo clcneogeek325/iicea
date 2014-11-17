@@ -12,11 +12,9 @@
 
 <a href="{% url  'vista_agregar_usuario'  %}" target="_blank" onClick="window.open(this.href, this.target, 'width=800,height=500'); return false;">
 {% endcomment %}
-<a href="{% url  'vista_agregar_usuario'  %}" target="popup" onClick="abrirVentana();">
+<!--<a href="{% url  'vista_agregar_usuario'  %}" target="popup" onClick="abrirVentana();">-->
+<a href="{% url  'vista_agregar_usuario'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Nuevo Empleado</button>
-</a>
-<a href="{% url  'vista_lista_empleados'  %}">
-<button class="medium green"><i class="icon-play-circle"></i>Actualizar</button>
 </a>
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
@@ -36,7 +34,9 @@
 				{% for e in lista %}
 				<tr>
 				<td>{{e.empleado.first_name}}</td>
-				<td><a href="{% url  'vista_editar_empleado' e.id %}">Editar</a></td>
+				<td>
+				<button class="medium blue"><a href="{% url  'vista_editar_empleado' e.id %}"> <i class="icon-edit">Editar</a></td></button>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{e.empleado.first_name}}!')){window.location.href = '{% url  'vista_eliminar_empleado' e.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>
