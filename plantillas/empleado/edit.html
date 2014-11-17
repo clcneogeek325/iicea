@@ -18,21 +18,8 @@
 
 	<form action="" method="post">
 		{% csrf_token %}
-		{{form_empleado.nombre.label}}
-		{{form_empleado.nombre}}<br>
-		{{form_empleado.apellidos.label}}
-		{{form_empleado.apellidos}}<br>
-		{{form_empleado.localidad.label}}
-		{{form_empleado.localidad}}<br>
-		{{form_empleado.municipio.label}}
-		{{form_empleado.municipio}}<br>
-		{{form_empleado.telefono.label}}
-		{{form_empleado.telefono}}<br>
-		{{form_empleado.sexo.label}}
-		{{form_empleado.sexo}}<br>
-		{{form_empleado.perfil.label}}
-		{{form_empleado.perfil}}<br>
-
+		{{form_datos.as_p}}
+		{{form_empleado.as_p}}
 	<button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
 </form>
 

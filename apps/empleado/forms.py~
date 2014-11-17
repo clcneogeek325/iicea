@@ -5,11 +5,11 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 
 
 class empleadoForm(forms.ModelForm):
+	
+	nombre = forms.CharField()
+	apellidos = forms.CharField()
 	class Meta:
 		model = empleado
-		
-class userForm(UserChangeForm):
-	class Meta:
-		model = User
-		fields = {'username','password','first_name','last_name','email'}
+		exclude = {'empleado','activo',}
+
 
