@@ -11,7 +11,9 @@ def view_add_grupo(request):
 	if request.method == "POST":
 		form = grupoForm(request.POST)
 		if form.is_valid():
-			form.save()
+			g = form.save(commit=False)
+			g.activo = True
+			g.save()
 			return HttpResponseRedirect('/grupo/')
 		else:
 			form = grupoForm(request.POST)
@@ -55,4 +57,10 @@ def view_editar_grupo(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
+					
+def view_del_grupo(request,id):
+	g = grupo.objects.get(pk=id)
+	g.activo = False
+	g.save()
+	return HttpResponseRedirect('/grupo/')
 

@@ -5,5 +5,5 @@ urlpatterns = patterns('apps.grupo.views',
     url(r'^grupo/(?P<id>.*)/editar/$', 'view_editar_grupo', name='vista_editar_grupo'),
     url(r'^grupo/add/$', 'view_add_grupo', name='vista_agregar_grupo'),
     url(r'^grupo/(?P<id>.*)/eliminar/$', 'view_del_grupo', name='vista_eliminar_grupo'),
-
+)
 )
