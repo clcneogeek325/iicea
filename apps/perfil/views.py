@@ -40,7 +40,9 @@ def view_add_pefil(request):
 	if request.method == "POST":
 		form = perfilForm(request.POST)
 		if form.is_valid():
-			form.save()
+			p = form.save(commit=False)
+			p.activo = True
+			p.save()
 			return HttpResponseRedirect('/perfil/')
 
 		else:
@@ -54,3 +56,10 @@ def view_add_pefil(request):
 		ctx = {'form':form}
 		return render_to_response("perfil/add.html",ctx,
 				context_instance=RequestContext(request))
+				
+def view_del_perfil(request,id):
+	p = perfil.objects.get(pk=id)
+	p.activo = False
+	p.save()
+	return HttpResponseRedirect('/perfil/')
+	
