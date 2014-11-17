@@ -10,7 +10,9 @@ def view_add_semestre(request):
 	if request.method == "POST":
 		form = semestreForm(request.POST)
 		if form.is_valid():
-			form.save()
+			s = form.save(commit=False)
+			s.activo = True
+			s.save()
 			return HttpResponseRedirect('/semestre/')
 		else:
 			form = semestreForm(request.POST)
@@ -55,6 +57,11 @@ def view_editar_semestre(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
-
+def view_del_semestre(request,id):
+	p = semestre.objects.get(pk=id)
+	p.activo = False
+	p.save()
+	return HttpResponseRedirect('/semestre/')
+	
 
 

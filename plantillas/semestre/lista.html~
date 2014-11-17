@@ -11,8 +11,9 @@
 <a href="{% url  'vista_agregar_semestre'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Semestre Nuevo </button>
 </a>
-
-<ul class="tabs">
+<a href="#">
+<button class="medium green"><i class="icon-play-circle"></i>Actualizar</button>
+</a><ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
 </ul>
 
