@@ -7,7 +7,7 @@
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
-<h3>Tutores</h3>
+<h3>Tutor</h3>
 <!--<a href="{% url 'vista_agregar_tutor'  %}" target="popup" onClick="abrirVentana();">-->
 <a href="{% url 'vista_agregar_tutor'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Nuevo Tutor</button>
@@ -31,6 +31,7 @@
 				<tr>
 				<td>{{t.nombre}}</td>
 				<td><a href="{% url  'vista_editar_tutor' t.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_eliminar_tutor' t.id %}">Editar</a></td>
 				</tr>
 				<tr>
 				</tr>

@@ -11,7 +11,9 @@ def view_add_tutor(request):
 	if request.method == "POST":
 		form  = tutorForm(request.POST)
 		if form.is_valid():
-			form.save()
+			t = form.save(commit=False)
+			t.activo =True
+			t.save()
 			return HttpResponseRedirect("/tutor/")
 		else:
 			form  = tutorForm(request.POST)
@@ -55,3 +57,11 @@ def view_editar_tutor(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+
+
+def view_del_tutor(request,id):
+	t = tutor.objects.get(pk=id)
+	t.activo = False
+	t.save()
+	return HttpResponseRedirect('/tutor/')
+	

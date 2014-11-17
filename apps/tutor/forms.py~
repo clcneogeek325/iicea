@@ -4,5 +4,5 @@ from .models import tutor
 class tutorForm(forms.ModelForm):
 	class Meta:
 		model = tutor
-		exclude = {'activo',}
+		fields = '__all__'
 		
