@@ -34,8 +34,9 @@
 		<tbody>
 				{% for a in lista %}
 				<tr>
-				<td>{{a.alumno.first_name}}</td>
-				<td><a href="{% url  'vista_editar_alumno' a.id %}">Editar</a></td>
+				<td>{{a.nombre}}</td>
+				<td><a href="{% url  'vista_editar_materia' a.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_eliminar_materia' a.id %}">Dar de baja</a></td>
 				</tr>
 				<tr>
 				</tr>

@@ -16,7 +16,9 @@ def view_add_concepto_pago(request):
 	if request.method == "POST":
 		form  = concepto_pagoForm(request.POST)
 		if form.is_valid():
-			form.save()
+			cp = form.save(commit=False)
+			cp.activo = True
+			cp.save()
 			return HttpResponseRedirect("/concepto_pago/")
 		else:
 			form  = concepto_pagoForm(request.POST)
@@ -53,3 +55,8 @@ def view_editar_concepto_pago(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+def view_del_concepto_pago(request,id):
+	cp = concepto_pago.objects.get(pk=id)
+	cp.activo = False
+	cp.save()
+	return HttpResponseRedirect('/concepto_pago/')

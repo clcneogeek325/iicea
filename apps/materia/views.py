@@ -16,7 +16,9 @@ def view_add_materia(request):
 	if request.method == "POST":
 		form  = materiaForm(request.POST)
 		if form.is_valid():
-			form.save()
+			m = form.save(commit=False)
+			m.activo  = True
+			m.save()
 			return HttpResponseRedirect("/materia/")
 		else:
 			form  = materiaForm(request.POST)
@@ -52,3 +54,9 @@ def view_editar_materia(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+def view_del_materia(request,id):
+	m = materia.objects.get(pk=id)
+	m.activo = False
+	m.save()
+	return HttpResponseRedirect('/materia/')
+	
