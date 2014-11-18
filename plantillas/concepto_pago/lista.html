@@ -31,8 +31,8 @@
 				{% for cp in lista %}
 				<tr>
 				<td>{{cp.nombre}}</td>
-				<td><a href="{% url  'vista_editar_concepto_pago' cp.id %}">Editar</a></td>
-				<td><a href="{% url  'vista_eliminar_concepto_pago' cp.id %}">Dar de baja</a></td>
+				<td><a href="{% url  'vista_editar_concepto_pago' cp.id %}"><button class="medium blue"> <i class="icon-edit"></i>Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{cp.nombre}}!')){window.location.href = '{% url  'vista_eliminar_concepto_pago' cp.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

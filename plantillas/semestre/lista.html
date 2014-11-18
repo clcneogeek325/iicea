@@ -27,11 +27,11 @@
 			</tr>
 		</thead>
 		<tbody>
-				{% for p in lista %}
+				{% for s in lista %}
 				<tr>
-				<td>{{p.nombre}}</td>
-				<td><a href="{% url  'vista_editar_semestre' p.id %}">Editar</a></td>
-				<td><a href="{% url  'vista_eliminar_semestre' p.id %}">Dar de baja</a></td>
+				<td>{{s.nombre}}</td>
+				<td><a href="{% url  'vista_editar_semestre' s.id %}"><button class="medium blue"><i class="icon-edit"></i>Editar</button></a></td>
+				<td> <button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{s.nombre}}!')){window.location.href = '{% url  'vista_eliminar_semestre' s.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

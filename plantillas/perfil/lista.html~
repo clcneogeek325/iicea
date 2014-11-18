@@ -30,7 +30,8 @@
 				{% for p in lista %}
 				<tr>
 				<td>{{p.nombre}}</td>
-				<td><a href="{% url  'vista_editar_perfil' p.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_perfil' p.id %}" ><button class="medium green"><i class="icon-edit"></i>Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{p.nombre}}!')){window.location.href = '{% url  'vista_eliminar_perfil' p.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

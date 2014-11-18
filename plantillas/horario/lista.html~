@@ -30,7 +30,8 @@
 				{% for h in lista %}
 				<tr>
 				<td>{{h.nombre}}</td>
-				<td><a href="{% url  'vista_editar_horario' h.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_horario' h.id %}"><button class="medium green"><i class="icon-edit"></i>Editar</button></a></td>
+				<td><a href="{% url  'vista_eliminar_horario' h.id %}">Dar de baja</a></td>
 				</tr>
 				<tr>
 				</tr>

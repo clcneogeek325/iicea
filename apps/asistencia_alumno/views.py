@@ -17,8 +17,10 @@ def view_editar_asistencia_alumno(request,id):
 		ast = asistencia_alumno.objects.get(pk=id)
 		if request.method == "POST":
 			form  = asistencia_alumnoForm(request.POST,instance=ast)
-			if form.is_valid():
-				form.save()
+			if form.is_valid(commit=False):
+				form.save_m2m()
+				aa.activo=True
+				aa.save()
 				return HttpResponseRedirect("/asistencia_alumno/")
 			else:
 				form  = asistencia_alumnoForm(request.POST)
@@ -39,7 +41,10 @@ def view_add_asistencia_alumno(request):
 	if request.method == "POST":
 		form  = asistencia_alumnoForm(request.POST)
 		if form.is_valid():
-			form.save()
+			aa = form.save(commit=False)
+			form.save_m2m()
+			aa.activo = False
+			aa.save()
 			return HttpResponseRedirect("/asistencia_alumno/")
 		else:
 			form  = asistencia_alumnoForm(request.POST)

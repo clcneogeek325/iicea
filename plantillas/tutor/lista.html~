@@ -30,8 +30,8 @@
 				{% for t in lista %}
 				<tr>
 				<td>{{t.nombre}}</td>
-				<td><a href="{% url  'vista_editar_tutor' t.id %}">Editar</a></td>
-				<td><a href="{% url  'vista_eliminar_tutor' t.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_tutor' t.id %}"><button class="medium green">Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{t.nombre}}!')){window.location.href = '{% url  'vista_eliminar_tutor' t.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

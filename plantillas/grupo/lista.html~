@@ -30,7 +30,8 @@
 				{% for g in lista %}
 				<tr>
 				<td>{{g.nombre}}</td>
-				<td><a href="{% url  'vista_editar_grupo' g.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_grupo' g.id %}"><button class="medium green">Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{g.nombre}}!')){window.location.href = '{% url  'vista_eliminar_grupo' g.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

@@ -35,7 +35,7 @@
 				<tr>
 				<td>{{e.empleado.first_name}}</td>
 				<td>
-				<button class="medium blue"><a href="{% url  'vista_editar_empleado' e.id %}"> <i class="icon-edit">Editar</a></td></button>
+				<a href="{% url  'vista_editar_empleado' e.id %}"><button class="medium blue"> <i class="icon-edit"></i>Editar</button></a></td>
 				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{e.empleado.first_name}}!')){window.location.href = '{% url  'vista_eliminar_empleado' e.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
