@@ -16,7 +16,9 @@ def view_add_nomina(request):
 	if request.method == "POST":
 		form  = nominaForm(request.POST)
 		if form.is_valid():
-			form.save()
+			a = form.save(commit=False)
+			a.activo = True
+			a.save()
 			return HttpResponseRedirect("/nomina/")
 		else:
 			form  = nominaForm(request.POST)
@@ -38,7 +40,9 @@ def view_editar_nomina(request,id):
 		if request.method == "POST":
 			form  = nominaForm(request.POST,instance=n)
 			if form.is_valid():
-				form.save()
+				a = form.save(commit=False)
+				a.activo = True
+				a.save()
 				return HttpResponseRedirect("/nomina/")
 			else:
 				form  = nominaForm(request.POST)

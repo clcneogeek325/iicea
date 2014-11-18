@@ -16,7 +16,9 @@ def view_add_observacion(request):
 	if request.method == "POST":
 		form  = observacionForm(request.POST)
 		if form.is_valid():
-			form.save()
+			o = form.save(commit=False)
+			o.activo = True
+			o.save()
 			return HttpResponseRedirect("/observacion/")
 		else:
 			form  = observacionForm(request.POST)
@@ -35,7 +37,9 @@ def view_editar_observacion(request,id):
 		if request.method == "POST":
 			form  = observacionForm(request.POST,instance=o)
 			if form.is_valid():
-				form.save()
+				o = form.save(commit=False)
+				o.activo = True
+				o.save()
 				return HttpResponseRedirect("/observacion/")
 			else:
 				form  = observacionForm(request.POST)

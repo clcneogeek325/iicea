@@ -27,7 +27,8 @@
 		{% csrf_token %}
 		{{form.as_p}}
 
-	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>
+<!--	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>-->
+	<button class="medium green" ><i class="icon-play-circle"></i>Guardar</button>
 </form>
 
 

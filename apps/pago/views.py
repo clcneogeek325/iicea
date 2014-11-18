@@ -19,7 +19,9 @@ def view_editar_pago(request,id):
 		if request.method == "POST":
 			form  = pagoForm(request.POST,instance=p)
 			if form.is_valid():
-				form.save()
+				p = form.save(commit = False)
+				p.activo = True
+				p.save()
 				return HttpResponseRedirect("/pago/")
 			else:
 				form  = pagoForm(request.POST)
@@ -39,7 +41,9 @@ def view_add_pago(request):
 	if request.method == "POST":
 		form  = pagoForm(request.POST)
 		if form.is_valid():
-			form.save()
+			p = form.save(commit = False)
+			p.activo = True
+			p.save()
 			return HttpResponseRedirect("/pago/")
 		else:
 			form  = pagoForm(request.POST)
