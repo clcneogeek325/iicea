@@ -1,0 +1,5 @@
+LOCK TABLES `tutor_tutor` WRITE;
+INSERT INTO `tutor_tutor` VALUES (1,'Geronimo','hernandez hernandez','Bazquez','ALbañil',1),(2,'Rasputin','Garcia','Luna','Actor porno',1),(3,'Said ','Gerra Escudero','Maestro','Director ',0);
+UNLOCK TABLES;
+
+

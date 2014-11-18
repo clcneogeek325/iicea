@@ -6,5 +6,5 @@ class asistencia_empleadoForm(forms.ModelForm):
 	empleados = forms.ModelMultipleChoiceField(queryset=empleado.objects.filter(activo=True),label="Docente")
 	class Meta:
 		model = asistencia_empleado
-		fields = '__all__'
+		exclude = {'activo',}
 		

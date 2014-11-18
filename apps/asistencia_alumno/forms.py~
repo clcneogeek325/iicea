@@ -8,5 +8,5 @@ class asistencia_alumnoForm(forms.ModelForm):
 	alumnos = forms.ModelMultipleChoiceField(queryset=alumno.objects.filter(activo=True),label="Alumnos")
 	class Meta:
 		model = asistencia_alumno
-		fields = '__all__'
+		exclude = {'activo',}
 		
