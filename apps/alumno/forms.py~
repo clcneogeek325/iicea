@@ -4,6 +4,7 @@ from apps.materia.models import materia
 from apps.tutor.models import tutor
 from apps.grupo.models import grupo
 from apps.semestre.models import semestre
+from apps.horario.models import horario
 
 class nombreYpellidoForm(forms.Form):
 	nombre = forms.CharField()

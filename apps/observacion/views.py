@@ -5,6 +5,12 @@ from .forms import observacionForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
+def view_eliminar_observacion(request,id):
+	o = observacion.objects.get(pk=id)
+	o.activo = False
+	o.save()
+	return HttpResponseRedirect('/observacion/')
+
 
 def view_lista_observaciones(request):
 	lista = observacion.objects.filter(activo=True)

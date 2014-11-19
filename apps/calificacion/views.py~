@@ -21,7 +21,6 @@ def view_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
 	s = semestre.objects.get(pk=id_semestre)	
 	a = alumno.objects.get(alumno_id=id_user)
 	lista = calificacion.objects.filter(alumno=a,semestre=s)
-	
 	ctx = {'lista':lista}
 	return render_to_response("calificacion/calificaciones.html",ctx,
 			context_instance=RequestContext(request))

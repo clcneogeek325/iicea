@@ -13,8 +13,12 @@ class nombreYpellidoForm(forms.Form):
 class alumnoForm(forms.ModelForm):
 	tutor = forms.ModelChoiceField(queryset=tutor.objects.filter(activo=True))
 	grupo = forms.ModelChoiceField(queryset=grupo.objects.filter(activo=True))
-	materias = forms.ModelMultipleChoiceField(queryset=materia.objects.filter(activo=True))
-	semestre = forms.ModelMultipleChoiceField(queryset=semestre.objects.filter(activo=True))
+	materias = forms.ModelMultipleChoiceField(
+			queryset=materia.objects.filter(activo=True), 
+			widget=forms.CheckboxSelectMultiple())
+	semestre = forms.ModelMultipleChoiceField(
+			queryset=semestre.objects.filter(activo=True), 
+			widget=forms.CheckboxSelectMultiple())
 	horario = forms.ModelChoiceField(queryset=horario.objects.filter(activo=True))
 	class Meta:
 		model = alumno

@@ -31,9 +31,8 @@
 				{% for p in lista %}
 				<tr>
 				<td>{{p.empleado}} ------- {{p.fecha}} </td>
-				<td><a href="{% url  'vista_editar_asistencia_alumno' p.id %}">Editar</a></td>
-				</tr>
-				<tr>
+				<td><a href="{% url  'vista_editar_asistencia_alumno' p.id %}"><button class="medium blue"><i class="icon-edit"></i>Editar</button></a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{p.empleado}}!')){window.location.href = '{% url  'vista_eliminar_asistencia_alumno' p.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				{% endfor %}
 		</tbody>

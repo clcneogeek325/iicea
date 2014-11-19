@@ -5,7 +5,7 @@ from apps.empleado.models import empleado
 
 class asistencia_alumnoForm(forms.ModelForm):
 	empleado = forms.ModelChoiceField(queryset=empleado.objects.filter(activo=True),label="Docente")
-	alumnos = forms.ModelMultipleChoiceField(queryset=alumno.objects.filter(activo=True),label="Alumnos")
+	alumno = forms.ModelMultipleChoiceField(queryset=alumno.objects.filter(activo=True),label="Alumnos")
 	class Meta:
 		model = asistencia_alumno
 		exclude = {'activo',}

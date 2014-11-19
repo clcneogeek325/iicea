@@ -10,6 +10,13 @@ from apps.semestre.models import semestre
 from apps.alumno.models import alumno
 
 
+def view_eliminar_calificacion(request,id):
+	c = calificacion.objects.get(pk=id)
+	c.activo = False
+	c.save()
+	return HttpResponseRedirect('/calificacion/')
+
+
 def view_calificaciones_alumno(request):
 	lista = semestre.objects.filter(activo=True)
 	ctx = {'lista':lista}

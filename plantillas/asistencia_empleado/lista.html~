@@ -9,7 +9,6 @@
 ===================================== -->
 <br />
 <br />
-<br />
 <a href="{% url 'vista_agregar_asistencia_empleado'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Agregar Asistencia</button>
 </a>
@@ -32,7 +31,7 @@
 				{% for p in lista %}
 				<tr>
 				<td>{{p.fecha}}</td>
-				<td><a href="{% url  'vista_editar_asistencia_empleado' p.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_asistencia_empleado' p.id %}"><button class="medium blue"><i class="icon-edit"></i>Editar</button></a></td>
 				</tr>
 				<tr>
 				</tr>

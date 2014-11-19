@@ -7,8 +7,9 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('alumno', '__first__'),
         ('materia', '__first__'),
-        ('alumno', '0001_initial'),
+        ('semestre', '__first__'),
     ]
 
     operations = [
@@ -20,6 +21,7 @@ class Migration(migrations.Migration):
                 ('activo', models.BooleanField(default=True)),
                 ('alumno', models.ForeignKey(to='alumno.alumno')),
                 ('materia', models.ForeignKey(to='materia.materia')),
+                ('semestre', models.ForeignKey(to='semestre.semestre')),
             ],
             options={
             },

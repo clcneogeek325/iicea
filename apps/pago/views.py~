@@ -6,6 +6,12 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def view_eliminar_pago(request,id):
+	p = pago.objects.get(pk=id)
+	p.activo = False
+	p.save()
+	return HttpResponseRedirect('/pago/')
+
 def view_lista_pagos(request):
 	lista = pago.objects.filter(activo=True)
 	ctx = {'lista':lista}
@@ -19,7 +25,9 @@ def view_editar_pago(request,id):
 		if request.method == "POST":
 			form  = pagoForm(request.POST,instance=p)
 			if form.is_valid():
-				form.save()
+				p = form.save(commit = False)
+				p.activo = True
+				p.save()
 				return HttpResponseRedirect("/pago/")
 			else:
 				form  = pagoForm(request.POST)

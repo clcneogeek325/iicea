@@ -5,6 +5,11 @@ from .forms import asistencia_alumnoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
+
+
+def view_eliminar_asistencia_alumno(request):
+	return HttpResponseRedirect('/asistencia_alumno/')
+
 def view_lista_asistencia_alumnos(request):
 	lista = asistencia_alumno.objects.filter(activo=True)
 	ctx = {'lista':lista}
@@ -19,9 +24,9 @@ def view_editar_asistencia_alumno(request,id):
 			form  = asistencia_alumnoForm(request.POST,instance=ast)
 			if form.is_valid():
 				aa = form.save(commit=False)
-				form.save_m2m()
 				aa.activo=True
 				aa.save()
+				form.save_m2m()
 				return HttpResponseRedirect("/asistencia_alumno/")
 			else:
 				form  = asistencia_alumnoForm(request.POST)

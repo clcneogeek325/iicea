@@ -7,6 +7,8 @@
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
+<br />
+<br />
 <a href="{% url 'vista_agregar_pago'  %}">
 <button class="medium green"><i class="icon-play-circle"></i>Nuevo Pago</button>
 </a>
@@ -29,8 +31,12 @@
 				{% for p in lista %}
 				<tr>
 				<td>{{p.alumno.alumno.first_name}}</td>
-				<td><a href="{% url  'vista_editar_pago' p.id %}">Editar</a></td>
+				<td><a href="{% url  'vista_editar_pago' p.id %}"><button class="medium blue"><i class="icon-edit"></i>Editar</button></a></td>
+				<td>
+				<button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{p.alumno.alumno.first_name}}!')){window.location.href = '{% url  'vista_eliminar_perfil' p.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button>
+				</td>
 				</tr>
+				
 				<tr>
 				</tr>
 				{% endfor %}

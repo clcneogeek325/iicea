@@ -41,7 +41,7 @@ def view_editar_nomina(request,id):
 			form  = nominaForm(request.POST,instance=n)
 			if form.is_valid():
 				a = form.save(commit=False)
-				a.activo = False
+				a.activo = True
 				a.save()
 				return HttpResponseRedirect("/nomina/")
 			else:

@@ -6,6 +6,12 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def view_eliminar_pago(request,id):
+	p = pago.objects.get(pk=id)
+	p.activo = False
+	p.save()
+	return HttpResponseRedirect('/pago/')
+
 def view_lista_pagos(request):
 	lista = pago.objects.filter(activo=True)
 	ctx = {'lista':lista}

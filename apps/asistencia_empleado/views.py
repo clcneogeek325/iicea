@@ -5,6 +5,12 @@ from .forms import asistencia_empleadoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
+def view_eliminar_asistencia_empleado(request,id):
+	ae = asistencia_empleado.objects.get(pk=id)
+	ae.activo = False
+	ae.save()
+	return HttpResponseRedirect('/asistencia_empleado/')
+
 def view_lista_asistencia_empleados(request):
 	lista = asistencia_empleado.objects.filter(activo=True)
 	ctx = {'lista':lista}

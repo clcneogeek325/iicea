@@ -25,17 +25,24 @@
 		<!-- Table -->
 		<table cellspacing="0" cellpadding="0">
 		<thead><tr>
-				<th>Nombre</th>
+				<th>Alumno</th>
+				<th>Materias</th>
+				<th>Calificacion</th>
 			</tr>
 		</thead>
 		<tbody>
-				{% for a in lista %}
+				{% for c in lista %}
 				<tr>
-				<td>{{a.alumno.alumno.first_name}}</td>
-				<td><a href="{% url  'vista_editar_calificacion' a.id %}">Editar</a></td>
+				<td>{{c.alumno.alumno.first_name}} </td>
+				<td> {{c.materia}} </td>
+				<td>{{c.calificacion }}</td>
+				<td><a href="{% url  'vista_editar_calificacion' c.id %}"><button class="medium blue"><i class="icon-edit"></i>Editar</button></a></td>
+				<td>
+				<button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{c.nombre}}!')){window.location.href = '{% url  'vista_eliminar_calificacion' a.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button>
+				</td>
+				
 				</tr>
-				<tr>
-				</tr>
+
 				{% endfor %}
 		</tbody>
 		</table>

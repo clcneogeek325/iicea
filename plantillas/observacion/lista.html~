@@ -29,7 +29,7 @@
 		<tbody>
 				{% for o in lista %}
 				<tr>
-				<td>{{o.alumno.first_name}}</td>
+				<td>{{o.alumno.alumno.first_name}}</td>
 				<td><a href="{% url  'vista_editar_observacion' o.id %}">Editar</a></td>
 				</tr>
 				<tr>

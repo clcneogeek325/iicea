@@ -5,6 +5,12 @@ from .forms import nominaForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
+def view_eliminar_nomina(request,id):
+	n = nombre.objects.get(pk=id)
+	n.activo = False
+	n.save()
+	return HttpResponseRedirect('/nomina/')
+
 
 def view_lista_nominas(request):
 	lista = nomina.objects.filter(activo=True)
