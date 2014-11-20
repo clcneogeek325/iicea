@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Agreganndo un nuevo alumno
+{% endblock %}
+
+{% block content %}
+<h3>Nuevo Usuario</h3>
+        <ul class="tabs">
+        </ul>
+
+            <div id="instructions" class="tab-content">
+            <div class="col_8">
+            <h4><i class="icon-wrench"></i> Setup</h4>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+            <button class="medium green"><i class="icon-play-circle"></i>Siguiente</button>
+        </form>
+
+
+            </div>
+            
+</div>
+{% endblock %}
+
+

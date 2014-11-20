@@ -7,7 +7,7 @@
 <!-- ===================================== 
 	INSTRUCTIONS 
 ===================================== -->
-<h3>Alumno</h3>
+<h3>calificacion</h3>
 
 <ul class="tabs">
 <li><a href="#instructions">Lista</a></li>
@@ -19,29 +19,8 @@
 
 <form action="" method="POST">
 	{% csrf_token %}
-	{% comment %}
 	{{form.as_p}}
-	{% endcomment %}
-	{{form.nombre.label}}
-	{{form.nombre}}<br>
-	{{form.apellidos.label}}
-	{{form.apellidos}}<br>
-	{{form.sexo.label}}
-	{{form.sexo}}<br>
-	{{form.curp.label}}
-	{{form.curp}}<br>
-	{{form.fecha_nacimiento.label}}
-	{{form.fecha_nacimiento}}<br>
-	{{form.localidad.label}}
-	{{form.localidad}}<br>
-	{{form.municipio.label}}
-	{{form.municipio}}<br>
-	{{form.email.label}}
-	{{form.email}}<br>
-	{{form.dia.label}}
-	{{form.dia}}<br>
-	{{form.telefono.label}}
-	{{form.telefono}}<br>	
+
 
 <button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
 </form>

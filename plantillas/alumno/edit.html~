@@ -19,7 +19,7 @@
 
 <form action="" method="POST">
 	{% csrf_token %}
-	{{form_nom_ape.as_p}}
+	{{form_datos.as_p}}
 	{{form_alumno.as_p}}
 <button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
 </form>

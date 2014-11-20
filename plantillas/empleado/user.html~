@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Agregando un nuevo horario
+
 {% endblock %}
 
-{% block content %}
-		<h3>Horarios</h3>
+{% block  content %}
+	<h3>Nuevo Usuario</h3>
 <ul class="tabs">
 </ul>
 
@@ -16,16 +16,13 @@
 	<form action="" method="post">
 		{% csrf_token %}
 		{{form.as_p}}
-
-	<button class="medium green" onclick="window.close();"><i class="icon-play-circle"></i>Guardar</button>
+	<button class="medium green"><i class="icon-play-circle"></i>Siguiente</button>
 </form>
 
 
 	</div>
-	<div class="col_1"></div>
-	<div class="col_3">
-{% include "infouser.html" %}
-	</div>
-	</div>
+	
 
+    </div>
 {% endblock %}
+

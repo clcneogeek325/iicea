@@ -31,7 +31,7 @@
 				<tr>
 				<td>{{h.nombre}}</td>
 				<td><a href="{% url  'vista_editar_horario' h.id %}"><button class="medium green"><i class="icon-edit"></i>Editar</button></a></td>
-				<td><a href="{% url  'vista_eliminar_horario' h.id %}">Dar de baja</a></td>
+				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{h.nombre}}!')){window.location.href = '{% url  'vista_eliminar_horario' h.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
 				</tr>
 				<tr>
 				</tr>

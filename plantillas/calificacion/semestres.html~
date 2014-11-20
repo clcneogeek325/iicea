@@ -40,7 +40,7 @@
 		</tbody>
 		</table>
 		 {% else %}
-		 <h1>No se han encontrado calificacions Registrados</h1>
+		 <h1>No se han encontrado Semestres </h1>
 		{% endif %}
 	
 	</div>

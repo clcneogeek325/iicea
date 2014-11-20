@@ -3,7 +3,9 @@
 {% block title %}
 	Agreagando una nueva calificacion
 {% endblock %}
-	<h3>calificacion</h3>
+
+{% block content %}
+		<h3>calificacion</h3>
 <ul class="tabs">
 </ul>
 
@@ -34,6 +36,6 @@
 	</div>
 
 	</div>
-</div> <!-- End Grid -->
-</body>
-</html>
+
+{% endblock %}
+

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Editando{% endblock %}
+{% block title %}Agregado Nuevo Pago{% endblock %}
 
 {% block content %}
 
