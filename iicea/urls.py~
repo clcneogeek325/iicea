@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+import settings
+from django.conf.urls.static import static
 
 from django.contrib import admin
 admin.autodiscover()
@@ -21,6 +23,6 @@ urlpatterns = patterns('',
     url(r'^', include('apps.semestre.urls')),
     url(r'^', include('apps.perfil.urls')),
     url(r'^', include('apps.materia.urls')),
-   	url(r'^', include('apps.calficacion.urls')),
+   	url(r'^', include('apps.calificacion.urls')),
     url(r'^admin/', include(admin.site.urls)),
-)
+) 

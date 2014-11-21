@@ -3,12 +3,16 @@ from django.contrib.auth.models import User
 from apps.perfil.models import perfil
 
 class empleado(models.Model):
+#	def url(self,filename):
+#		ruta = "foto/%s/%s"%(self.empleado.first_name,str(filename))
+#		return ruta
 	TIPO_SEXO = (
 	('Hombre', 'Hombre'),
 	('Mujer', 'Mujer'),
 	)
 
 	empleado = models.ForeignKey(User,null=False)
+	foto = models.ImageField(upload_to='/home/geek/proyectos/iicea/foto/',null=True,blank=True)
 	localidad = models.CharField(max_length=30,null=True,blank=True)
 	municipio = models.CharField(max_length=30,null=True,blank=True)
 	telefono = models.CharField(max_length=30,null=True,blank=True)

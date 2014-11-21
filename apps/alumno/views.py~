@@ -7,7 +7,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-
+def view_del_alumno(request,id):
+	a = alumno.objects.get(pk=id)
+	a.activo = False
+	a.save()
+	return HttpResponseRedirect('/alumno/')
 
 
 

@@ -38,9 +38,9 @@ def view_editar_empleado(request,id):
 				U.save()
 				return HttpResponseRedirect("/empleado/")
 			else:
-				form_user  = empleadoForm(request.POST)
-				form_empleado  = userForm(request.POST)
-				ctx = {'form_user':form_user,'form_empleado':form_empleado}
+				form_datos = nombreYpellidoForm(request.POST)
+				form_empleado  = empleadoForm(request.POST)
+				ctx = {'form_empleado':form_empleado,'form_datos':form_datos}
 				return render_to_response('empleado/edit.html',ctx,
 						context_instance=RequestContext(request))	
 		else:

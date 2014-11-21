@@ -115,6 +115,7 @@ STATICFILES_DIRS = (
 		'static/',
 		)
 
+
 TEMPLATE_DIRS = (
 		'plantillas/',
 		)

@@ -13,5 +13,7 @@ class calificacion(models.Model):
 	semestre = models.ForeignKey(semestre,null=False,blank=False)
 	def __unicode__(self):
 		return self.alumno.alumno.first_name
-		
+	
+	class Meta:
+		unique_together = (('alumno','materia','semestre'))
 
