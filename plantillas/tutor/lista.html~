@@ -41,15 +41,23 @@
 		 {% else %}
 		 <h1>No se han encontrado tutores</h1>
 		{% endif %}
-	
+		<div class="pagination">
+		<span class="step-links">
+			{% if lista.has_previous %}
+				<a href="?page={{ lista.previous_page_number }}"><button class="small orange"><i class="icon-edit"></i>Anterior</button></a>
+			{% endif %}
+			<span class="current">
+				Pagina {{ lista.number }} hasta {{ lista.paginator.num_pages }}.
+			</span>
+			{% if lista.has_next %}
+				<a href="?page={{ lista.next_page_number }}"><button class="small orange"><i class="icon-edit"></i>Siguiente</button></a>
+			{% endif %}
+		</span>
+	</div>
 	</div>
 	<div class="col_1"></div>
 	<div class="col_3">
-	<h4><i class="icon-globe"></i> Browsers</h4>
-	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
-	<h4>Notes</h4>
-	Don't forget to use an HTML5 Doctype
-	<code>&lt;!DOCTYPE html&gt;</code>
+{% include "infouser.html" %}
 	</div>
 	</div>
 {% endblock %}

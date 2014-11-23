@@ -35,7 +35,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_lista_calificacions(request):
-	contact_list = calificacion.objects.all().reverse()
+	contact_list = calificacion.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
 	page = request.GET.get('page')
 	try:

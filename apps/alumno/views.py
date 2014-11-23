@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
 
 def view_del_alumno(request,id):
 	a = alumno.objects.get(pk=id)
@@ -16,7 +19,17 @@ def view_del_alumno(request,id):
 
 
 def view_lista_alumnos(request):
-	lista = alumno.objects.filter(activo=True)
+	contact_list = alumno.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
 	ctx = {'lista':lista}
 	return render_to_response("alumno/lista.html",ctx,
 			context_instance=RequestContext(request))
@@ -30,11 +43,10 @@ def view_editar_alumno(request,id):
 		if request.method == "POST":
 			form  = alumnoForm(request.POST,instance=a)
 			if form.is_valid():
-				print "valido"
 				alu = form.save(commit=False)
-				form.save_m2m()
 				alu.alumno = U
 				alu.save()
+				form.save_m2m()
 				U.first_name = request.POST['nombre']
 				U.last_name = request.POST['apellidos']
 				U.save()

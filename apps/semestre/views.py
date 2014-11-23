@@ -4,7 +4,7 @@ from apps.semestre.models import semestre
 from .forms import semestreForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_add_semestre(request):
 	if request.method == "POST":
@@ -29,7 +29,17 @@ def view_add_semestre(request):
 
 
 def view_lista_semestres(request):
-	lista = semestre.objects.filter(activo=True)
+	contact_list = semestre.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
 	ctx = {'lista':lista}
 	return render_to_response("semestre/lista.html",ctx,
 			context_instance=RequestContext(request))

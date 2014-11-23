@@ -30,11 +30,10 @@ def view_editar_alumno(request,id):
 		if request.method == "POST":
 			form  = alumnoForm(request.POST,instance=a)
 			if form.is_valid():
-				print "valido"
 				alu = form.save(commit=False)
-				form.save_m2m()
 				alu.alumno = U
 				alu.save()
+				form.save_m2m()
 				U.first_name = request.POST['nombre']
 				U.last_name = request.POST['apellidos']
 				U.save()

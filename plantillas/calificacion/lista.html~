@@ -54,13 +54,13 @@
 	<div class="pagination">
 		<span class="step-links">
 			{% if lista.has_previous %}
-				<a href="?page={{ lista.previous_page_number }}"><button class="small blue"><i class="icon-edit"></i>Anterior</button></a>
+				<a href="?page={{ lista.previous_page_number }}"><button class="small orange"><i class="icon-edit"></i>Anterior</button></a>
 			{% endif %}
 			<span class="current">
 				Pagina {{ lista.number }} hasta {{ lista.paginator.num_pages }}.
 			</span>
 			{% if lista.has_next %}
-				<a href="?page={{ lista.next_page_number }}"><button class="small blue"><i class="icon-edit"></i>Siguiente</button></a>
+				<a href="?page={{ lista.next_page_number }}"><button class="small orange"><i class="icon-edit"></i>Siguiente</button></a>
 			{% endif %}
 		</span>
 	</div>

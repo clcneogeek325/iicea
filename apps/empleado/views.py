@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.alumno.forms import nombreYpellidoForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_del_empleado(request,id):
 	e = empleado.objects.get(pk=id)
@@ -16,9 +17,18 @@ def view_del_empleado(request,id):
 
 
 def view_lista_empleados(request):
-	form = empleadoForm()
-	lista = empleado.objects.filter(activo=True)
-	ctx = {'lista':lista,'form':form}
+	contact_list =empleado.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
+	ctx = {'lista':lista}
 	return render_to_response("empleado/lista.html",ctx,
 			context_instance=RequestContext(request))
 

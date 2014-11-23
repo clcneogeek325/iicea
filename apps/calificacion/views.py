@@ -10,6 +10,25 @@ from apps.semestre.models import semestre
 from apps.alumno.models import alumno
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+
+def view_lista_calificacions(request):
+	contact_list = calificacion.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
+	ctx = {'lista':lista}
+	return render_to_response("calificacion/lista.html",ctx,
+			context_instance=RequestContext(request))
+
+
 def view_eliminar_calificacion(request,id):
 	c = calificacion.objects.get(pk=id)
 	c.activo = False
@@ -34,21 +53,6 @@ def view_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def view_lista_calificacions(request):
-	contact_list = calificacion.objects.order_by('id').reverse()
-	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
-	page = request.GET.get('page')
-	try:
-		lista = paginator.page(page)
-	except PageNotAnInteger:
-		# If page is not an integer, deliver first page.
-		lista = paginator.page(1)
-	except EmptyPage:
-		# If page is out of range (e.g. 9999), deliver last page of results.
-		lista = paginator.page(paginator.num_pages)
-	ctx = {'lista':lista}
-	return render_to_response("calificacion/lista.html",ctx,
-			context_instance=RequestContext(request))
 
 
 def view_editar_calificacion(request,id):

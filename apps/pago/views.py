@@ -4,7 +4,7 @@ from .models import pago
 from .forms import pagoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_eliminar_pago(request,id):
 	p = pago.objects.get(pk=id)
@@ -13,7 +13,17 @@ def view_eliminar_pago(request,id):
 	return HttpResponseRedirect('/pago/')
 
 def view_lista_pagos(request):
-	lista = pago.objects.filter(activo=True)
+	contact_list = pago.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
 	ctx = {'lista':lista}
 	return render_to_response("pago/lista.html",ctx,
 			context_instance=RequestContext(request))

@@ -4,7 +4,7 @@ from apps.grupo.models import grupo
 from .forms import grupoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_add_grupo(request):
@@ -29,7 +29,17 @@ def view_add_grupo(request):
 
 
 def view_lista_grupos(request):
-	lista = grupo.objects.filter(activo=True)
+	contact_list = grupo.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
 	ctx = {'lista':lista}
 	return render_to_response("grupo/lista.html",ctx,
 			context_instance=RequestContext(request))

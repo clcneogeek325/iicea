@@ -4,7 +4,7 @@ from .models import asistencia_alumno
 from .forms import asistencia_alumnoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_eliminar_asistencia_alumno(request,id):
@@ -14,7 +14,17 @@ def view_eliminar_asistencia_alumno(request,id):
 	return HttpResponseRedirect('/asistencia_alumno/')
 
 def view_lista_asistencia_alumnos(request):
-	lista = asistencia_alumno.objects.filter(activo=True)
+	contact_list = asistencia_alumno.objects.order_by('id').reverse()
+	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
+	page = request.GET.get('page')
+	try:
+		lista = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		lista = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		lista = paginator.page(paginator.num_pages)
 	ctx = {'lista':lista}
 	return render_to_response("asistencia_alumno/lista.html",ctx,
 			context_instance=RequestContext(request))
