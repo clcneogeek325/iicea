@@ -17,7 +17,8 @@
 	<h4><i class="icon-wrench"></i> Ajustes</h4>
 		<!-- List Icons -->
 		<ul class="icons">
-			<li><i class="icon-ok"></i><a href="{% url  'vista_lista_perfiles'  %}">Pefil</a></li>
+		{% if user.is_superuser %}
+				<li><i class="icon-ok"></i><a href="{% url  'vista_lista_perfiles'  %}">Pefil</a></li>
 		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_semestres'  %}">Semestre</a></li>
 		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_grupos' %}">Grupo</a></li>
 		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_tutores'  %}">Tutor</a></li>
@@ -31,9 +32,12 @@
 		<li><i class="icon-ok"></i><a href="{% url  'vista_lista_pagos'  %}">Pago</a></li>
 		<li><i class="icon-ok"></i><a href="{% url 'vista_lista_nominas' %}">Nomina</a></li>
 				<li><i class="icon-ok"></i><a href="{% url 'vista_lista_observaciones' %}">Observacion</a></li>
-		
+			
+		{% endif %}
 
-</ul>
+
+		</ul>
+		
 	{% include "infouser.html" %}
 	
 	

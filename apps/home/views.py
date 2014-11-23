@@ -26,8 +26,10 @@ def view_login(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				if user.is_staff or user.is_superuser:
+				if user.is_superuser:
 					return HttpResponseRedirect('/')
+				elif user.is_staff:
+					return HttpResponseRedirect('/calificacion/')
 				else:
 					return HttpResponseRedirect('/lista_semestres/')
 			else:
