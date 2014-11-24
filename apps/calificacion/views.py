@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from .models import calificacion
 from .forms import calificacionForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -11,7 +11,31 @@ from apps.alumno.models import alumno
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from iicea.settings import URL_LOGIN
+from django.template.loader import render_to_string
+import cStringIO as StringIO
+import ho.pisa as pisa
+import cgi
 
+
+
+
+def generar_pdf(html):
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(),content_type='application/pdf')
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+
+def pdf(request):
+    ctx = {'pagesize':'A4'}
+    html = render_to_string('calificacion/pdf.html', ctx,
+    		context_instance=RequestContext(request))
+    return generar_pdf(html)
+    
+
+
+#===============================================
+#===============================================
 @login_required(login_url=URL_LOGIN)
 def view_lista_calificacions(request):
 	contact_list = calificacion.objects.order_by('id').reverse()
@@ -36,6 +60,8 @@ def view_eliminar_calificacion(request,id):
 	c.save()
 	return HttpResponseRedirect('/calificacion/')
 
+
+
 @login_required(login_url=URL_LOGIN)
 def view_calificaciones_alumno(request):
 	lista = semestre.objects.filter(activo=True)
@@ -43,15 +69,37 @@ def view_calificaciones_alumno(request):
 	return render_to_response("calificacion/semestres.html",ctx,
 			context_instance=RequestContext(request))
 
-@login_required(login_url=URL_LOGIN)
-def view_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
+
+def calificaciones_alumno_x_semestre(request,id_semestre,id_user):
+	print id_semestre,"---",id_user
 	s = semestre.objects.get(pk=id_semestre)	
 	a = alumno.objects.get(alumno_id=id_user)
 	lista = calificacion.objects.filter(alumno=a,semestre=s)
-	ctx = {'lista':lista}
+	msg = "Lista de Calificaciones"
+	
+	ctx = {'lista':lista,'msg':msg,'id_semestre':id_semestre,'id_user':id_user}
+	return ctx
+
+
+
+@login_required(login_url=URL_LOGIN)
+def view_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
+	ctx = calificaciones_alumno_x_semestre(request,id_semestre,id_user)
 	return render_to_response("calificacion/calificaciones.html",ctx,
 			context_instance=RequestContext(request))
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+
+def pdf_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
+	ctx = calificaciones_alumno_x_semestre(request,id_semestre,id_user)
+	html =  render_to_string("calificacion/pdf.html",ctx,
+			context_instance=RequestContext(request))
+	return generar_pdf(html)
+
+
+
+
+
 
 
 
@@ -79,6 +127,9 @@ def view_editar_calificacion(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
+
+
+
 
 @login_required(login_url=URL_LOGIN)
 def view_agregar_calificacion(request):

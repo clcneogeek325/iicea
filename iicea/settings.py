@@ -1,8 +1,6 @@
 import os
-
-
-
 URL_LOGIN = "/login/"
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '-8jb=0vw7o=5iy_8pg9y6-_)-$*syhaoda1y@^jvj1%1-dif7)'
 DEBUG = True
