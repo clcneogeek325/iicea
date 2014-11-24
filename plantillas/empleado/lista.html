@@ -37,6 +37,10 @@
 				<td>
 				<a href="{% url  'vista_editar_empleado' e.id %}"><button class="medium blue"> <i class="icon-edit"></i>Editar</button></a></td>
 				<td><button class="medium red" onClick="if (confirm('Esta seguro de querer eliminar {{e.empleado.first_name}}!')){window.location.href = '{% url  'vista_eliminar_empleado' e.id %}';};"><i class="icon-minus-sign"></i>Dar de baja</button></td>
+				<td>
+				<a href="{% url  'vista_edit_passwd' e.empleado.id %}"><button class="medium blue"> <i class="icon-edit"></i>Editar Contrasenia</button></a>
+				</td>
+				
 				</tr>
 				<tr>
 				</tr>

@@ -5,10 +5,34 @@ from .forms import alumnoForm,nombreYpellidoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from iicea.settings import URL_LOGIN
+
+
+
+def view_edit_passwd(request,id):
+	u = User.objects.get(id=id)
+	if request.method == "POST":
+		form = PasswordChangeForm(u,request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/alumno/")
+		else:
+			form = PasswordChangeForm(u)
+			msg="Revisa bien los datos"
+			ctx = {'form':form,'msg':msg}
+			return render_to_response('alumno/passwd.html',ctx,
+				context_instance=RequestContext(request))
+				
+	else:
+		form = PasswordChangeForm(u)
+		msg="Ingresa los datos"
+		ctx = {'form':form,'msg':msg}
+		return render_to_response('alumno/passwd.html',ctx,
+				context_instance=RequestContext(request))
+
 
 @login_required(login_url=URL_LOGIN)
 def view_del_alumno(request,id):

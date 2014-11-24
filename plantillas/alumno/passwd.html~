@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Cambiando de Contrasenia{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== 
+	INSTRUCTIONS 
+===================================== -->
+<h4>{{msg}}</h4><br />
+<h3>Usuario</h3>
+
+<ul class="tabs">
+<li><a href="#instructions">Lista</a></li>
+</ul>
+
+	<div id="instructions" class="tab-content">
+	<div class="col_8">
+	<h4><i class="icon-wrench"></i> Setup</h4>
+
+<form action="" method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+<button class="medium green"><i class="icon-play-circle"></i>Guardar</button>
+</form>
+
+
+	</div>
+	<div class="col_1"></div>
+	<div class="col_3">
+{% include "infouser.html" %}
+	</div>
+	</div>
+{% endblock %}
