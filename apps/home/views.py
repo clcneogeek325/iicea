@@ -3,13 +3,11 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.http  import HttpResponseRedirect
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
-
-
-@login_required(login_url='/login/')
+@login_required(login_url=URL_LOGIN)
 def view_index(request):
 	return render_to_response('index.html',
 			context_instance=RequestContext(request))

@@ -7,9 +7,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
-
+@login_required(login_url=URL_LOGIN)
 def view_del_alumno(request,id):
 	a = alumno.objects.get(pk=id)
 	a.activo = False
@@ -17,7 +18,7 @@ def view_del_alumno(request,id):
 	return HttpResponseRedirect('/alumno/')
 
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_alumnos(request):
 	contact_list = alumno.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -34,7 +35,7 @@ def view_lista_alumnos(request):
 	return render_to_response("alumno/lista.html",ctx,
 			context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_editar_alumno(request,id):
 	try:
 		a = alumno.objects.get(pk=id)
@@ -70,7 +71,7 @@ def view_editar_alumno(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 		
-					
+@login_required(login_url=URL_LOGIN)
 def view_add_user(request):
 	if request.method == "POST":
 		form  = UserCreationForm(request.POST)

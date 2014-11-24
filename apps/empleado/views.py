@@ -8,14 +8,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.alumno.forms import nombreYpellidoForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
+@login_required(login_url=URL_LOGIN)
 def view_del_empleado(request,id):
 	e = empleado.objects.get(pk=id)
 	e.activo = False
 	e.save()
 	return HttpResponseRedirect('/empleado/')
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_empleados(request):
 	contact_list =empleado.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -32,7 +35,7 @@ def view_lista_empleados(request):
 	return render_to_response("empleado/lista.html",ctx,
 			context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_editar_empleado(request,id):
 	try:
 		e = empleado.objects.get(pk=id)
@@ -65,6 +68,8 @@ def view_editar_empleado(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+
+@login_required(login_url=URL_LOGIN)
 def view_add_user(request):
 	if request.method == "POST":
 		form  = UserCreationForm(request.POST)

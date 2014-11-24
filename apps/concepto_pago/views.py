@@ -5,7 +5,10 @@ from .forms import concepto_pagoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
+@login_required(login_url=URL_LOGIN)
 def view_lista_concepto_pagos(request):
 	contact_list = concepto_pago.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -22,6 +25,8 @@ def view_lista_concepto_pagos(request):
 	return render_to_response("concepto_pago/lista.html",ctx,
 			context_instance=RequestContext(request))
 
+
+@login_required(login_url=URL_LOGIN)
 def view_add_concepto_pago(request):
 	if request.method == "POST":
 		form  = concepto_pagoForm(request.POST)
@@ -42,6 +47,7 @@ def view_add_concepto_pago(request):
 				context_instance=RequestContext(request))
 
 
+@login_required(login_url=URL_LOGIN)
 def view_editar_concepto_pago(request,id):
 	try:
 		cp = concepto_pago.objects.get(pk=id)
@@ -65,6 +71,8 @@ def view_editar_concepto_pago(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+
+@login_required(login_url=URL_LOGIN)
 def view_del_concepto_pago(request,id):
 	cp = concepto_pago.objects.get(pk=id)
 	cp.activo = False

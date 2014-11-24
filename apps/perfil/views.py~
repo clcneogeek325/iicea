@@ -4,8 +4,11 @@ from apps.perfil.models import perfil
 from .forms import perfilForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_perfiles(request):
 	contact_list = perfil.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page

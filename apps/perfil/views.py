@@ -5,7 +5,10 @@ from .forms import perfilForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
+@login_required(login_url=URL_LOGIN)
 def view_lista_perfiles(request):
 	contact_list = perfil.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -23,6 +26,7 @@ def view_lista_perfiles(request):
 			context_instance=RequestContext(request))
 
 
+@login_required(login_url=URL_LOGIN)
 def view_editar_perfil(request,id):
 	try:
 		p = perfil.objects.get(pk=id)
@@ -45,7 +49,7 @@ def view_editar_perfil(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
-
+@login_required(login_url=URL_LOGIN)
 def view_add_pefil(request):
 	if request.method == "POST":
 		form = perfilForm(request.POST)
@@ -67,6 +71,7 @@ def view_add_pefil(request):
 		return render_to_response("perfil/add.html",ctx,
 				context_instance=RequestContext(request))
 				
+@login_required(login_url=URL_LOGIN)
 def view_del_perfil(request,id):
 	p = perfil.objects.get(pk=id)
 	p.activo = False

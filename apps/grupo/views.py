@@ -5,8 +5,10 @@ from .forms import grupoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_add_grupo(request):
 	if request.method == "POST":
 		form = grupoForm(request.POST)
@@ -27,7 +29,7 @@ def view_add_grupo(request):
 				context_instance=RequestContext(request))
 	
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_grupos(request):
 	contact_list = grupo.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -44,7 +46,7 @@ def view_lista_grupos(request):
 	return render_to_response("grupo/lista.html",ctx,
 			context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_editar_grupo(request,id):
 	try:
 		g = grupo.objects.get(pk=id)
@@ -67,7 +69,9 @@ def view_editar_grupo(request,id):
 			ctx = {'msg':"No se encontro el perfil solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
-					
+
+
+@login_required(login_url=URL_LOGIN)
 def view_del_grupo(request,id):
 	g = grupo.objects.get(pk=id)
 	g.activo = False

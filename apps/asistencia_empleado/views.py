@@ -5,14 +5,17 @@ from .forms import asistencia_empleadoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_eliminar_asistencia_empleado(request,id):
 	ae = asistencia_empleado.objects.get(pk=id)
 	ae.activo = False
 	ae.save()
 	return HttpResponseRedirect('/asistencia_empleado/')
 
+@login_required(login_url=URL_LOGIN)
 def view_lista_asistencia_empleados(request):
 	contact_list = asistencia_empleado.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -29,7 +32,7 @@ def view_lista_asistencia_empleados(request):
 	return render_to_response("asistencia_empleado/lista.html",ctx,
 			context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_editar_asistencia_empleado(request,id):
 	try:
 		ast = asistencia_empleado.objects.get(pk=id)
@@ -53,6 +56,7 @@ def view_editar_asistencia_empleado(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
+@login_required(login_url=URL_LOGIN)
 def view_add_asistencia_empleado(request):
 	if request.method == "POST":
 		form  = asistencia_empleadoForm(request.POST)

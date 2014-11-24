@@ -5,8 +5,10 @@ from .forms import asistencia_alumnoForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_eliminar_asistencia_alumno(request,id):
 	aa = asistencia_alumno.objects.get(pk=id)
 	aa.activo = False
@@ -14,7 +16,7 @@ def view_eliminar_asistencia_alumno(request,id):
 	return HttpResponseRedirect('/asistencia_alumno/')
 
 def view_lista_asistencia_alumnos(request):
-	contact_list = alumno.objects.order_by('id').reverse()
+	contact_list = asistencia_alumno.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
 	page = request.GET.get('page')
 	try:

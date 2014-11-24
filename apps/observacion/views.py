@@ -5,15 +5,17 @@ from .forms import observacionForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_eliminar_observacion(request,id):
 	o = observacion.objects.get(pk=id)
 	o.activo = False
 	o.save()
 	return HttpResponseRedirect('/observacion/')
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_observaciones(request):
 	contact_list = observacion.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -30,6 +32,7 @@ def view_lista_observaciones(request):
 	return render_to_response("observacion/lista.html",ctx,
 			context_instance=RequestContext(request))
 
+@login_required(login_url=URL_LOGIN)
 def view_add_observacion(request):
 	if request.method == "POST":
 		form  = observacionForm(request.POST)
@@ -49,6 +52,7 @@ def view_add_observacion(request):
 		return render_to_response('observacion/add.html',ctx,
 					context_instance=RequestContext(request))
 
+@login_required(login_url=URL_LOGIN)
 def view_editar_observacion(request,id):
 	try:
 		o = observacion.objects.get(pk=id)

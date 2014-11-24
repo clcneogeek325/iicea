@@ -28,7 +28,7 @@ def view_add_tutor(request):
 
 
 def view_lista_tutores(request):
-	contact_list = calificacion.objects.order_by('id').reverse()
+	contact_list = tutor.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
 	page = request.GET.get('page')
 	try:
