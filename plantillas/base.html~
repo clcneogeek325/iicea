@@ -57,7 +57,7 @@
 	</script>
 	<script type="text/javascript">
 	window.onload = function(){
-		var fecha1=new JsDatePick({
+		var fecha2=new JsDatePick({
 				useMode:2,
 				target:"id_fecha_nacimiento",
 				dateFormat:"%d/%m/%Y"

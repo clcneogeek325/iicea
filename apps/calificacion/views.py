@@ -63,9 +63,9 @@ def view_eliminar_calificacion(request,id):
 
 
 @login_required(login_url=URL_LOGIN)
-def view_calificaciones_alumno(request):
+def view_calificaciones_alumno(request,id):
 	lista = semestre.objects.filter(activo=True)
-	ctx = {'lista':lista}
+	ctx = {'lista':lista,'id_alumno':id}
 	return render_to_response("calificacion/semestres.html",ctx,
 			context_instance=RequestContext(request))
 
@@ -128,11 +128,10 @@ def view_editar_calificacion(request,id):
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
-
-
-
 @login_required(login_url=URL_LOGIN)
 def view_agregar_calificacion(request):
+	datos = calificacion.objects.filter(activo=True).order_by('id').reverse()
+	ultimo_alumno = {'alumno':datos[0].alumno,'semestre':datos[0].semestre}
 	if request.method == "POST":
 		form  = calificacionForm(request.POST)
 		if form.is_valid():
@@ -144,7 +143,8 @@ def view_agregar_calificacion(request):
 			return render_to_response('calificacion/add.html',ctx,
 					context_instance=RequestContext(request))	
 	else:
-		form = calificacionForm()
+
+		form = calificacionForm(initial=ultimo_alumno)
 		ctx = {'form':form}
 		return render_to_response('calificacion/add.html',ctx,
 				context_instance=RequestContext(request))

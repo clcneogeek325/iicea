@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>
+			{{titulo}}
+		</title>
+	<style type="text/css">
+		#titulo
+			{
+			background-color: #d3d7cf;
+			border-radius:3px; 
+			}
+		#titulos
+			{
+			background-color: #729fcf;
+			
+			border-radius:3px; 
+			}
+		#registros
+			{
+			background-color: #b2e3c5;
+			}
+		table { 
+			border-bottom: 1px solid #999;
+			border-top: 1px solid #999;
+			border-left: 1px solid #999;
+			border-right: 1px solid #999;
+			}
+	</style>
+	
+	</head>
+	<body>
+		<h1 id="titulo" align="center">
+		{{ user.first_name}}
+		</h1>
+			{{msg}}
+		{% if lista %}
+						<h1>
+
+							{{total_utilidad}}
+						</h1>
+			<table >
+					<theader>
+
+						<tr id="titulos">
+							<td align="center"><h4>Alumno</h4></td>
+							<td align="center"><h4>Concepto de pago</h4></td>
+							<td align="center"><h4>Facha</h4></td>
+							<td align="center"><h4>Cantidad</h4></td>
+						</tr>
+						
+					</theader>
+			{% for p in lista %}
+					<tbody>
+						<tr id="registros">
+							<td align="center">{{p.alumno.first_name}}</td>
+							<td align="center">{{p.concepto_pago}}</td>
+							<td align="center">{{p.fecha}}</td>
+							<td align="center">{{p.cantidad}}</td>
+						</tr>
+					</tbody>
+			{% endfor %}
+			</table>
+		{% else %}
+			<p>No se han encontrado  productos</p>
+		{% endif %}
+
+	</body>
+</html>
+
+
+

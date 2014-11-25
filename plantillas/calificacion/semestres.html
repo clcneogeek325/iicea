@@ -32,7 +32,7 @@
 				{% for n in lista %}
 				<tr>
 				<td>{{n.nombre}}</td>
-			    <td><a href="{% url  'vista_cal_alumno_x_sem'  n.id user.id   %}">Mostrar</a></td>
+			    <td><a href="{% url  'vista_cal_alumno_x_sem'  n.id id_alumno  %}">Mostrar</a></td>
 				</tr>
 				<tr>
 				</tr>

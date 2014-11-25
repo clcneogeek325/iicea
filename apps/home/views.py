@@ -31,7 +31,7 @@ def view_login(request):
 				elif user.is_staff:
 					return HttpResponseRedirect('/calificacion/')
 				else:
-					return HttpResponseRedirect('/lista_semestres/')
+					return HttpResponseRedirect('/lista_semestres/%s/'%user.id)
 			else:
 				msg = "El usuario esta inhabilitado usted necesita ponerse en contacto con el administrador(a)"
 				ctx = {'msg':msg}
