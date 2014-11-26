@@ -66,15 +66,19 @@ def view_editar_grupo(request,id):
 			return render_to_response('grupo/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el grupo solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
 
 @login_required(login_url=URL_LOGIN)
 def view_del_grupo(request,id):
-	g = grupo.objects.get(pk=id)
-	g.activo = False
-	g.save()
-	return HttpResponseRedirect('/grupo/')
-
+	try:
+		g = grupo.objects.get(pk=id)
+		g.activo = False
+		g.save()
+		return HttpResponseRedirect('/grupo/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el grupo solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))

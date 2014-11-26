@@ -10,10 +10,16 @@ from iicea.settings import URL_LOGIN
 
 @login_required(login_url=URL_LOGIN)
 def view_eliminar_asistencia_empleado(request,id):
-	ae = asistencia_empleado.objects.get(pk=id)
-	ae.activo = False
-	ae.save()
-	return HttpResponseRedirect('/asistencia_empleado/')
+	try:
+		ae = asistencia_empleado.objects.get(pk=id)
+		ae.activo = False
+		ae.save()
+		return HttpResponseRedirect('/asistencia_empleado/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro la asistencia de empleado solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+
 
 @login_required(login_url=URL_LOGIN)
 def view_lista_asistencia_empleados(request):
@@ -52,7 +58,7 @@ def view_editar_asistencia_empleado(request,id):
 			return render_to_response('asistencia_empleado/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro la asistencia de empleado solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 

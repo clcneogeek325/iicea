@@ -65,14 +65,18 @@ def view_editar_horario(request,id):
 			return render_to_response('horario/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el horario solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
 @login_required(login_url=URL_LOGIN)
 def view_del_horario(request,id):
-	h = horario.objects.get(pk=id)
-	h.activo = False
-	h.save()
-	return HttpResponseRedirect('/horario/')
-	
+	try:
+		h = horario.objects.get(pk=id)
+		h.activo = False
+		h.save()
+		return HttpResponseRedirect('/horario/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el horario solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))

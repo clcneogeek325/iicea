@@ -60,13 +60,17 @@ def view_editar_materia(request,id):
 			return render_to_response('materia/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el materia solicitada"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
 def view_del_materia(request,id):
-	m = materia.objects.get(pk=id)
-	m.activo = False
-	m.save()
-	return HttpResponseRedirect('/materia/')
-	
+	try:
+		m = materia.objects.get(pk=id)
+		m.activo = False
+		m.save()
+		return HttpResponseRedirect('/materia/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el materia solicitada"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))

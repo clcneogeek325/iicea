@@ -5,8 +5,10 @@ from .forms import tutorForm
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from iicea.settings import URL_LOGIN
 
-
+@login_required(login_url=URL_LOGIN)
 def view_add_tutor(request):
 	if request.method == "POST":
 		form  = tutorForm(request.POST)
@@ -26,7 +28,7 @@ def view_add_tutor(request):
 		return render_to_response('tutor/add.html',ctx,
 				context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_lista_tutores(request):
 	contact_list = tutor.objects.order_by('id').reverse()
 	paginator = Paginator(contact_list, 3)# Show 25 contacts per page
@@ -43,7 +45,7 @@ def view_lista_tutores(request):
 	return render_to_response("tutor/lista.html",ctx,
 			context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def view_editar_tutor(request,id):
 	try:
 		t = tutor.objects.get(pk=id)
@@ -68,7 +70,7 @@ def view_editar_tutor(request,id):
 					context_instance=RequestContext(request))
 
 
-
+@login_required(login_url=URL_LOGIN)
 def view_del_tutor(request,id):
 	t = tutor.objects.get(pk=id)
 	t.activo = False

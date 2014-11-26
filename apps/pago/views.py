@@ -52,10 +52,15 @@ def view_search_pago(request,id_alumno):
 
 @login_required(login_url=URL_LOGIN)
 def view_eliminar_pago(request,id):
-	p = pago.objects.get(pk=id)
-	p.activo = False
-	p.save()
-	return HttpResponseRedirect('/pago/')
+	try:
+		p = pago.objects.get(pk=id)
+		p.activo = False
+		p.save()
+		return HttpResponseRedirect('/pago/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el pago solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
 
 
 @login_required(login_url=URL_LOGIN)
@@ -97,7 +102,7 @@ def view_editar_pago(request,id):
 			return render_to_response('pago/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el pago solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 					

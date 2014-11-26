@@ -10,11 +10,15 @@ from iicea.settings import URL_LOGIN
 
 @login_required(login_url=URL_LOGIN)
 def view_eliminar_asistencia_alumno(request,id):
-	aa = asistencia_alumno.objects.get(pk=id)
-	aa.activo = False
-	aa.save()
-	return HttpResponseRedirect('/asistencia_alumno/')
-
+	try:
+		aa = asistencia_alumno.objects.get(pk=id)
+		aa.activo = False
+		aa.save()
+		return HttpResponseRedirect('/asistencia_alumno/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro la sistencia de alumno solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
 
 @login_required(login_url=URL_LOGIN)
 def view_lista_asistencia_alumnos(request):
@@ -56,7 +60,7 @@ def view_editar_asistencia_alumno(request,id):
 			return render_to_response('asistencia_alumno/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro la sistencia de alumno solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 

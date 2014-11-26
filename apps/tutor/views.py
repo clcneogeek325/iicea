@@ -65,15 +65,19 @@ def view_editar_tutor(request,id):
 			return render_to_response('tutor/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el tutor solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
 
 @login_required(login_url=URL_LOGIN)
 def view_del_tutor(request,id):
-	t = tutor.objects.get(pk=id)
-	t.activo = False
-	t.save()
-	return HttpResponseRedirect('/tutor/')
-	
+	try:
+		t = tutor.objects.get(pk=id)
+		t.activo = False
+		t.save()
+		return HttpResponseRedirect('/tutor/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el tutor solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))

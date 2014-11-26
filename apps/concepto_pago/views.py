@@ -67,14 +67,19 @@ def view_editar_concepto_pago(request,id):
 			return render_to_response('concepto_pago/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el concepto de pago solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
 
 @login_required(login_url=URL_LOGIN)
 def view_del_concepto_pago(request,id):
-	cp = concepto_pago.objects.get(pk=id)
-	cp.activo = False
-	cp.save()
-	return HttpResponseRedirect('/concepto_pago/')
+	try:
+		cp = concepto_pago.objects.get(pk=id)
+		cp.activo = False
+		cp.save()
+		return HttpResponseRedirect('/concepto_pago/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el concepto de pago solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))

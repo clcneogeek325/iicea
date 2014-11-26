@@ -10,10 +10,16 @@ from iicea.settings import URL_LOGIN
 
 @login_required(login_url=URL_LOGIN)
 def view_eliminar_observacion(request,id):
-	o = observacion.objects.get(pk=id)
-	o.activo = False
-	o.save()
-	return HttpResponseRedirect('/observacion/')
+	try:
+		o = observacion.objects.get(pk=id)
+		o.activo = False
+		o.save()
+		return HttpResponseRedirect('/observacion/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el observacion solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+
 
 @login_required(login_url=URL_LOGIN)
 def view_lista_observaciones(request):
@@ -74,7 +80,7 @@ def view_editar_observacion(request,id):
 			return render_to_response('observacion/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el observacion solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 

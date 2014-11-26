@@ -10,10 +10,16 @@ from iicea.settings import URL_LOGIN
 
 @login_required(login_url=URL_LOGIN)
 def view_eliminar_nomina(request,id):
-	n = nomina.objects.get(pk=id)
-	n.activo = False
-	n.save()
-	return HttpResponseRedirect('/nomina/')
+	try:
+		n = nomina.objects.get(pk=id)
+		n.activo = False
+		n.save()
+		return HttpResponseRedirect('/nomina/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el nomina solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+
 
 @login_required(login_url=URL_LOGIN)
 def view_lista_nominas(request):
@@ -77,7 +83,7 @@ def view_editar_nomina(request,id):
 			return render_to_response('nomina/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el nomina solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 

@@ -68,7 +68,7 @@ def view_editar_semestre(request,id):
 			return render_to_response('semestre/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el semestre solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
@@ -76,10 +76,14 @@ def view_editar_semestre(request,id):
 
 @login_required(login_url=URL_LOGIN)
 def view_del_semestre(request,id):
-	p = semestre.objects.get(pk=id)
-	p.activo = False
-	p.save()
-	return HttpResponseRedirect('/semestre/')
-	
+	try:
+		p = semestre.objects.get(pk=id)
+		p.activo = False
+		p.save()
+		return HttpResponseRedirect('/semestre/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el semestre solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
 
 

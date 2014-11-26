@@ -13,10 +13,16 @@ from iicea.settings import URL_LOGIN
 
 @login_required(login_url=URL_LOGIN)
 def view_del_empleado(request,id):
-	e = empleado.objects.get(pk=id)
-	e.activo = False
-	e.save()
-	return HttpResponseRedirect('/empleado/')
+	try:
+		e = empleado.objects.get(pk=id)
+		e.activo = False
+		e.save()
+		return HttpResponseRedirect('/empleado/')
+	except ObjectDoesNotExist:
+			ctx = {'msg':"No se encontro el empleado solicitado"}
+			return render_to_response('msg.html',ctx,
+					context_instance=RequestContext(request))
+
 
 @login_required(login_url=URL_LOGIN)
 def view_lista_empleados(request):
@@ -64,7 +70,7 @@ def view_editar_empleado(request,id):
 			return render_to_response('empleado/edit.html',ctx,
 					context_instance=RequestContext(request))
 	except ObjectDoesNotExist:
-			ctx = {'msg':"No se encontro el perfil solicitado"}
+			ctx = {'msg':"No se encontro el empleado solicitado"}
 			return render_to_response('msg.html',ctx,
 					context_instance=RequestContext(request))
 
