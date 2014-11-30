@@ -7,8 +7,7 @@ class empleado(models.Model):
 	('Hombre', 'Hombre'),
 	('Mujer', 'Mujer'),
 	)
-
-	empleado = models.ForeignKey(User,null=False)
+	empleado = models.OneToOneField(User,unique=True)
 	localidad = models.CharField(max_length=30,null=True,blank=True)
 	municipio = models.CharField(max_length=30,null=True,blank=True)
 	telefono = models.CharField(max_length=30,null=True,blank=True)
@@ -17,6 +16,4 @@ class empleado(models.Model):
 	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.empleado.first_name
-
-	
 

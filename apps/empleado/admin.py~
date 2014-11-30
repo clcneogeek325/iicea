@@ -9,7 +9,7 @@ class EmpleadoInline(admin.StackedInline):
 	can_delete = False
 	verbose_name_plural = 'empleado'
 
-## Define a new User admin
+# Define a new User admin
 class UserAdmin(UserAdmin):
 	inlines = (EmpleadoInline, )
 

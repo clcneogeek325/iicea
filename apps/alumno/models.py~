@@ -21,7 +21,7 @@ class alumno(models.Model):
 	('domingo','domingo'),
 	('lunes','lunes'),
 	)
-	alumno = models.OneToOneField(User,null=False)
+	alumno = models.OneToOneField(User,unique=True)
 	sexo = models.CharField(choices=TIPO_SEXO,max_length=20,null=True)
 	curp = models.CharField(max_length=20,null=True)
 	fecha_nacimiento = models.DateField(null=True)
@@ -36,6 +36,8 @@ class alumno(models.Model):
 	materias = models.ManyToManyField(materia,null=True)
 	semestre = models.ManyToManyField(semestre,null=True)
 	activo = models.BooleanField(default=True)
-	
 	def __unicode__(self):
 		return self.alumno.first_name
+		
+	class Meta:
+		db_table = 'alumno'

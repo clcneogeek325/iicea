@@ -13,7 +13,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'apps.asistencia_alumno',
     'apps.asistencia_empleado',
     'apps.concepto_pago',
@@ -30,7 +29,6 @@ INSTALLED_APPS = (
     'apps.home',
     'apps.observacion',
     'apps.calificacion',
-    'apps.reportes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,3 +84,5 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
 		'plantillas/',
 		)
+		
+AUTH_USER_MODEL = 'empleado.empleado'

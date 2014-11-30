@@ -97,12 +97,6 @@ def pdf_calificaciones_alumno_x_semestre(request,id_semestre,id_user):
 	return generar_pdf(html)
 
 
-
-
-
-
-
-
 @login_required(login_url=URL_LOGIN)
 def view_editar_calificacion(request,id):
 	try:
@@ -130,8 +124,11 @@ def view_editar_calificacion(request,id):
 
 @login_required(login_url=URL_LOGIN)
 def view_agregar_calificacion(request):
-	datos = calificacion.objects.filter(activo=True).order_by('id').reverse()
-	ultimo_alumno = {'alumno':datos[0].alumno,'semestre':datos[0].semestre}
+	if calificacion.objects.filter(activo=True).exists():
+		datos = calificacion.objects.filter(activo=True).order_by('id').reverse()
+		ultimo_alumno = {'alumno':datos[0].alumno,'semestre':datos[0].semestre}
+	else:
+		ultimo_alumno = {}
 	if request.method == "POST":
 		form  = calificacionForm(request.POST)
 		if form.is_valid():
