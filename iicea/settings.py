@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_sockjs_tornado',
     'apps.asistencia_alumno',
     'apps.asistencia_empleado',
     'apps.concepto_pago',
@@ -29,6 +30,7 @@ INSTALLED_APPS = (
     'apps.home',
     'apps.observacion',
     'apps.calificacion',
+    'apps.chat',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,3 +88,11 @@ TEMPLATE_DIRS = (
 		)
 		
 AUTH_USER_MODEL = 'auth.User'
+
+
+SOCKJS_PORT = 9999
+SOCKJS_CHANNEL = 'echo'
+SOCKJS_CLASSES = (
+    'apps.chat.sockserver.ChatConnection',
+)
+
