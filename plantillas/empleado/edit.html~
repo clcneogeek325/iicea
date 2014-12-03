@@ -16,7 +16,7 @@
 	<div class="col_8">
 	<h4><i class="icon-wrench"></i> Setup</h4>
 
-	<form action="" method="post">
+	<form enctype="multipart/form-data" action="" method="post">
 		{% csrf_token %}
 		{{form_datos.as_p}}
 		{{form_empleado.as_p}}
@@ -27,11 +27,7 @@
 	</div>
 	<div class="col_1"></div>
 	<div class="col_3">
-	<h4><i class="icon-globe"></i> Browsers</h4>
-	HTML KickStart Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android. 
-	<h4>Notes</h4>
-	Don't forget to use an HTML5 Doctype
-	<code>&lt;!DOCTYPE html&gt;</code>
+{% include "infouser.html" %}
 	</div>
 	</div>
 {% endblock %}

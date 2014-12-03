@@ -45,7 +45,7 @@ ROOT_URLCONF = 'iicea.urls'
 WSGI_APPLICATION = 'iicea.wsgi.application'
 
 
-db = "mysql"
+db = "sqlite"
 
 if db == "sqlite":
 	DATABASES = {

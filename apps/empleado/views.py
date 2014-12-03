@@ -47,7 +47,7 @@ def view_editar_empleado(request,id):
 		e = empleado.objects.get(pk=id)
 		U = User.objects.get(pk=e.empleado.id)
 		if request.method == "POST":
-			form_empleado  = empleadoForm(request.POST,instance=e)
+			form_empleado  = empleadoForm(request.POST,request.FILES,instance=e)
 			if form_empleado.is_valid():
 				emp = form_empleado.save(commit=False)
 				emp.empleado = U
@@ -58,7 +58,7 @@ def view_editar_empleado(request,id):
 				return HttpResponseRedirect("/empleado/")
 			else:
 				form_datos = nombreYpellidoForm(request.POST)
-				form_empleado  = empleadoForm(request.POST)
+				form_empleado  = empleadoForm(request.POST,request.FILES)
 				ctx = {'form_empleado':form_empleado,'form_datos':form_datos}
 				return render_to_response('empleado/edit.html',ctx,
 						context_instance=RequestContext(request))	

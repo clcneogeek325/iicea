@@ -13,6 +13,7 @@ class empleado(models.Model):
 	telefono = models.CharField(max_length=30,null=True,blank=True)
 	sexo = models.CharField(max_length=100,choices=TIPO_SEXO)
 	perfil = models.ForeignKey(perfil,null=True,blank=True)
+	foto = models.ImageField(upload_to="foto/")
 	activo = models.BooleanField(default=True)
 	def __unicode__(self):
 		return self.empleado.first_name
