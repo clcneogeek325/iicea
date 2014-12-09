@@ -10,6 +10,10 @@
 <link rel="stylesheet" type="text/css" href="/static/style.css" media="all" />                          <!-- CUSTOM STYLES -->
 <link rel="stylesheet" type="text/css" href="/static/css/date/date.css" media="all" />                          <!-- CUSTOM STYLES -->
 
+ <link rel="stylesheet" href="/static/chat/css/normalize.css">
+ <link rel="stylesheet" href="/static/chat/css/main.css">
+ <script src="/static/chat/js/vendor/modernizr-2.6.1.min.js"></script>
+
 </head><body>
 <!-- ===================================== END HEADER ===================================== -->
 
@@ -26,6 +30,7 @@
 {% endif %}
 
 <li><a href="{% url 'vista_lista_calificacions'  %}"><span>CA</span>LIFICACIONES</a></li>
+<li><a href="{% url 'vista_chat'  %}"><span>CH</span>AT</a></li>
 </ul>
 </nav>
 {% endif %}
