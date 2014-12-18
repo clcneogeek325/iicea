@@ -40,12 +40,15 @@ def view_login(request):
 		else:
 			# Sus usuario y contrasenia son incorrectos
 			msg = "LA contrasenia y el usuario son incorrectos"
-			ctx = {'msg':msg}
-			return render_to_response('error.html',ctx,
+			form = AuthenticationForm()
+			ctx = {'form':form,'msg':msg}
+			return render_to_response('login.html',ctx,
 				context_instance=RequestContext(request))
+
 	else:
+		msg = "Ingrese el usuario y la contrasenia"
 		form = AuthenticationForm()
-		ctx = {'form':form}
+		ctx = {'form':form,'msg':msg}
 		return render_to_response('login.html',ctx,
 			context_instance=RequestContext(request))
 

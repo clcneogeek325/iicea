@@ -82,6 +82,7 @@ def view_add_user(request):
 		if form.is_valid():
 			U = form.save(commit=False)
 			U.first_name = U.username
+			U.is_staff = True
 			U.save()
 			E = empleado(empleado=U)
 			E.save()

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
@@ -23,8 +23,6 @@ urlpatterns = patterns('',
     url(r'^', include('apps.materia.urls')),
     url(r'^', include('apps.calificacion.urls')),
     url(r'^', include('apps.chat.urls')),
-
-
-
     url(r'^admin/', include(admin.site.urls)),
-) 
+    url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
+)

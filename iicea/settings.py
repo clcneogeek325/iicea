@@ -56,7 +56,7 @@ if db == "sqlite":
 		    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 		}
 	}
-elif db == "mysql":
+if db == "mysql":
 	DATABASES = {
 		'default': {
 		    'ENGINE': 'django.db.backends.mysql',
@@ -86,6 +86,9 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
 		'plantillas/',
 		)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT =  os.path.normpath(os.path.join(BASE_DIR,'media/'))
 		
 AUTH_USER_MODEL = 'auth.User'
 

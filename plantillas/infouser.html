@@ -1,7 +1,13 @@
 </div>
 	<div class="col_1"></div>
 	<div class="col_3">
-	<h4><i class="icon-user"></i> Nombre del usuario: {{  user.username }}</h4>
+		{% if  user.empleado.foto %}
+		<img  src="/media/{{user.empleado.foto}}" height="180px" width="180px"></img>
+		{% else %}
+		<h4>Este usuario no tiene foto</h4>
+		{% endif %}
+	
+		<h4><i class="icon-user"></i> Nombre del usuario: {{  user.username }}</h4>
 	<p>Nombres : {{user.first_name}}</p>
 	<p>Apellidos {{user.last_name }}</p>
 	<p>Email: {{user.email}}</p>
